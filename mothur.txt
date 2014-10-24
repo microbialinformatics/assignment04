@@ -1,0 +1,120 @@
+Introducing mothur: Open-Source Platform-Independent Community-Supported Software for Describing and Comparing Microbial
+Communities
+
+mothur aims to be a comprehensive software package that allows users to use a single piece of software to analyze community
+sequence data It builds upon previous tools to provide a flexible and powerful software package for analyzing sequencing
+data As a case study we used mothur to trim screen and align sequences calculate distances assign sequences to operational
+taxonomic units and describe the α and β diversity of eight marine samples previously characterized by pyrosequencing of
+16S rRNA gene fragments This analysis of more than 222000 sequences was completed in less than 2 h with a laptop computer
+
+Since Pace and colleagues outlined the culture-independent framework for sequencing 16S rRNA gene sequences in 1985 microbial ecologists have experienced
+an exponential improvement in the ability to sequence not only this primary phylogenetic marker but also numerous functional
+genes from diverse environments Twenty-five years later there are over 106 rRNA gene sequences deposited in public repositories such as GenBank and the number of sequences continues to double every
+15 to 18 months The development of pyrosequencing technologies has enabled the Human Microbiome Project the International Census of Marine Microbes and individual investigators to collectively amass over 109 16S rRNA gene sequence tags since 2006 Because of this development in sequencing technology individual studies have shifted
+from sequencing 101 to 102 sequences from multiple samples to sequencing 104 to 105 sequences from multiple samples These impressive statistics are indicative of the excitement that the field enjoys over relating changes in microbial community
+structure with changes in ecosystem performance
+
+Advances in computational tools have improved our ability to address ecologically relevant questions Because of the development
+of tools including ARB DOTUR SONS LIBSHUFF UniFrac AMOVA and HOMOVA TreeClimber and rRNA-specific databases microbial ecology has progressed from being a descriptive to an experimental endeavor Although these tools have been widely
+successful a number of limitations will affect their use as sequencing capacity increases and studies become more complex
+First for ease of use many of the rRNA-specific databases have online tools including aligners classifiers and analysis
+pipelines however these tools allow a limited set of generic analyses and we must begin to question whether transferring
+gigantic data sets across the Internet for analysis is a sustainable practice Second much of the existing software was developed
+for analyzing 102 to 104 sequences As the number of sequences expands it is essential that existing software be refactored to use more efficient
+algorithms In addition although the use of scripting languages such as Perl and Python has been useful for the online analysis
+of small data sets they are relatively slow compared to code written in C and C++ Finally the boutique nature of the existing
+tools has limited their integration and further development One consequence of this is that the generation of field-wide
+analysis standards has not been developed making it difficult to perform meta-analyses As sequencing capacity increases
+and our research questions become more sophisticated it is critical that the software be flexible and easily maintained
+
+Introducing mothur
+To overcome these limitations we have developed a single software platform mothur mothur implements the algorithms implemented in previous tools including DOTUR SONS TreeClimber LIBSHUFF ∫-LIBSHUFF
+and UniFrac Beyond the implementation of these approaches we have incorporated additional features including over 25
+calculators for quantifying key ecological parameters for measuring α and β diversity visualization tools including
+Venn diagrams heat maps and dendrograms functions for screening sequence collections based on quality a NAST-based
+sequence aligner a pairwise sequence distance calculator and the ability to call individual commands either from within mothur
+using files with lists of commands or directly from the command line providing for greater flexibility
+in setting up analysis pipelines
+
+Object oriented responsive free and platform independent
+mothur is written in C++ using modern object-oriented programming strategies Design patterns are used extensively to improve the maintenance and flexibility of the software Since releasing the first version of mothur in February 2009 we have made use of an iterative release design model This
+means that instead of releasing mothur once a year with many modifications we release smaller updates to mothur throughout
+the year The advantage to this approach is the ability to more quickly address bugs incorporate user suggestions and get
+new features to users By making mothur an open-source software package under the GNU General Public License we have ensured that the software is free and open to modification by other investigators developing their own analysis
+methods mothur is available from the project website as a Windows-compatible executable or as source code for compilation in Unix/Linux or Mac OS X environments
+
+
+Open documentation and support
+Extensive community-supported documentation and support are available through a MediaWiki-based wiki and a phpBB-based discussion forum The wiki format serves two important functions First it is a source of documentation that users are free to read edit
+and expand to help themselves and others understand the theory and implementation behind the commands provided in mothur
+For example the wiki page describing each calculator includes manual calculations Numerous undergraduate and graduate courses
+have used these example calculations to improve their students numeracy Second users are encouraged to create pages describing
+how they used the software to analyze a set of data as a medium for teaching others the diverse ways that one can design experiments
+and analyze their data These “example workflows” include the original data commands and commentary from unpublished and
+published studies The discussion forum allows users to ask questions that anyone can answer and the forum allows users to suggest improvements
+to the software
+
+Example workflow: the oceans rare biosphere
+Although mothur is fully capable of analyzing traditional clone-based sequences here we demonstrate the ability of mothur
+to efficiently analyze a pyrosequencing data set Sogin and colleagues in a seminal 2006 study that outlined the use of pyrosequencing
+in microbial ecology studies obtained 216243 high-quality sequence reads from the V6 region of the 16S rRNA gene from eight
+samples They obtained six-paired samples from the meso- and bathypelagic realms from three sites in the North Atlantic Deep Water
+loop and two samples from diffuse hydrothermal vent fluids near the site of an eruption in the Axial Seamount in the northeast
+Pacific Ocean Their analysis primarily considered their inability to exhaustively sample the biodiversity of sites in spite of record
+sequencing depths The sequence data were obtained from http://jbpcmbledu/research_supplements/g454/20060412-private/ and we used the 2 February 2008 version of the data set These data differ from those described in the original publication
+because the data processing algorithms internal to the GS20 machine were updated therefore it is not possible to make a
+direct comparison to the findings of the original analysis Although these data were already trimmed and sorted into individual
+files for each sample mothur has the capacity to generate these files from the FASTA-formatted sequence file generated by
+a sequencer Furthermore mothur has a number of functions for performing hypothesis tests but here we will focus on operational
+taxonomic unit -based methods of describing and comparing communities
+
+mothur makes several improvements that allow users with modest computing resources to analyze large data sets Most significant
+are the ability to analyze only the unique sequences in a data set but retain information about the number of times that each
+sequence was observed and the use of sparse matrices that represent only distances smaller than a user-specified cutoff Using
+a PHYLIP-based approach would have required approximately 145 GB to represent 23 × 1010 distances Our improvements resulted in an 189-MB file containing 52 × 105 pairwise distances that were smaller than 010 The only mothur-imposed limit is the number of distances that can be processed
+which is 264 The more likely limitation will be the amount of random-access memory available on the users computer With the reduced
+memory requirement also comes significantly improved processing speed Considering that most computers have multiple processors
+users can obtain further increases in speed by utilizing the parallelization features provided in the alignment and distance
+calculation commands
+
+mothur can cluster sequences using the furthest neighbor nearest neighbor or UPGMA algorithms The ability to let the data speak for themselves in determining OTUs is advantageous compared to database-based approaches
+that can form clusters in which sequences are similar to the same database sequences but not to each other Furthermore
+mothur uses the approach employed in DOTUR where OTUs are defined for multiple cutoffs up to the distance threshold so that
+alternative OTU definitions can be compared For example using the furthest neighbor algorithm we clustered sequences into
+OTUs up to a distance threshold of 010 and observed 13202 11317 and 7971 OTUs at cutoffs of 003 005 and 010 distance
+units respectively A similar type of analysis using the approach used in programs such as CD-HIT would limit the user to
+a nearest neighbor-based approach and the users would need to run the program for each distance level in which they were
+interested
+
+By inputting a file that maps each sequence to a sample identifier the clusters could be parsed to perform α-diversity analyses
+First we calculated the richness and diversity of the eight samples at OTU cutoffs of 003 005 and 010 distance units
+by using the number of observed OTUs Chao1 estimated minimum number of OTUs and a nonparametric Shannon diversity index
+Second we calculated rarefaction curves for the eight samples for a 010 distance cutoff the original Sogin analysis built rarefaction curves using frequencies acquired from a database-based OTU assignment analysis
+Interestingly mothur calculated the coverage of these samples to be between 094 and 098 and yet the rarefaction curves
+continued to climb with increasing sequencing effort These types of analysis were the extent of the α-diversity measurements
+performed in the original Sogin analysis and each sample required up to 4 days to complete on a Quad Opteron 875 22-GHz
+series Dual Core machine with 28 GB of RAM The analysis described in this paper—from aligning
+of sequences through β-diversity analyses—required less than 2 h with use of a MacBook Pro laptop with 2 GB RAM and with only
+one of the 20-GHz dual processors
+
+Due to software limitations it was not possible to assess the β diversity of the samples in the original Sogin analysis
+With the software improvements implemented in mothur we were able to transform the original OTU information into heat maps
+Venn diagrams and dendrograms to describe the similarities in membership and structure of the eight samples Several interesting observations can be made
+from this analysis First although the dendrograms generated using the Jaccard coefficient and the θYC community structure similarity coefficient have similar topologies the terminal branch lengths of the Jaccard coefficient
+dendrogram are considerably longer for samples 53R 55R 115R and 137 This is interesting because it indicates that while
+these samples have considerably different memberships the relative abundances of the shared OTUs are similar Thus
+the differences between the communities are likely found in the rarer OTUs Second the two diffuse hydrothermal flow samples
+clearly cluster away from the others This is intuitive because of the considerable differences in temperature and chemistry
+Third the only available piece of metadata that explains the clustering of the seawater samples is extreme depth the deepest
+sample 112R clearly clusters away from the other seawater samples and was taken 2411 m deeper than was any of the other
+samples Considering that this was the only sample taken at such an extreme depth additional sampling is required in order
+to have confidence in such a correlation
+
+Looking forward
+The development of computational tools to describe and analyze microbial communities is in a “Red Queen”-type race where advances
+in computational power are met with expansions in sequencing capacity and vice versa As the length and number of reads multiply
+data analysis resources must meet the challenge Although mothur goes a long way toward making data analysis efficient flexible
+and simple the analyses are by no means trivial and researchers must take care to ensure that their experiments are well
+designed and thought out and that their results are biologically plausible The field of microbial ecology is experiencing
+an amazing revolution where we can now design experiments with sophisticated experimental designs Tools such as mothur open
+new possibilities so that the primary limitation is our imagination
