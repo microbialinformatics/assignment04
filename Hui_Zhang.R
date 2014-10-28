@@ -2,7 +2,8 @@
 #given a file name, create a list variable that contains any necessary information
 #paper <- readPaper("mothur.txt") 
 readPaper <- function(paper){
-  paper <- scan(paper,"")   # list???????? paper<-list(paper)
+  paper <- scan(paper,"")
+  paper <- list(paper)
   return(paper)
 }
 
@@ -48,9 +49,8 @@ wordHist <- function(paper,top=10){
   sorted.list <- sort(fre.list,decreasing=T)
   wd.sorted <- head(sorted.list,top)
   wd.sorted.name <- names(wd.sorted)
-                                     #how to plot histogram
-  
-  return(wd.sorted)
+  plot <- barplot(sorted.list[1:10],xlab="Words",ylab="Used time",main="Used times of words")
+  return(wd.sorted[1:top])
 }
 
 
@@ -104,3 +104,7 @@ previousWord <- function(paper,wd){
 #surpriseMe: filelist,??? to ????.
 #create a function "surpriseMe" that does a task of your choosing
 #surpriseMe(paper, ...)
+supriseMe <- function(paper,wd1,wd2){
+  
+  
+}
