@@ -25,14 +25,18 @@ wordCount <- function(paper,wd){
 
 
 
-
-
-
-
 #wordPlacement: filelist, word to vector of numbers.
 #if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
 #wordPlacement(paper, "mothur")
-
+wordPlacement <- function(paper,wd){
+  paper <- scan(paper,"")
+    for(i in 1:length(paper)){
+    if (paper[i] == wd){ 
+      break
+    }
+  }
+  return(i)
+}
 
 
 
