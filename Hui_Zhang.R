@@ -2,7 +2,7 @@
 #given a file name, create a list variable that contains any necessary information
 #paper <- readPaper("mothur.txt") 
 readPaper <- function(paper){
-  paper <- scan(paper,"")   # list????????
+  paper <- scan(paper,"")   # list???????? paper<-list(paper)
   return(paper)
 }
 
@@ -98,13 +98,6 @@ previousWord <- function(paper,wd){
   }
   return(wd.count)
 }
-
-
-
-
-
-
-
 
 
 
