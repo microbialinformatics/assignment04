@@ -13,7 +13,6 @@ readPaper <- function(paper){
 #if I supply the output from readPaper and a word (or a vector of words), tell me how many times the word(s) shows up
 #wordCount(paper, "mothur")
 wordCount <- function(paper,wd){
-  paper <- scan(paper,"")
   count <- 0
   for(i in 1:length(paper)){
   if (paper[i] == wd){
@@ -29,7 +28,6 @@ wordCount <- function(paper,wd){
 #if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
 #wordPlacement(paper, "mothur")
 wordPlacement <- function(paper,wd){
-  paper <- scan(paper,"")
     for(i in 1:length(paper)){
     if (paper[i] == wd){ 
       break
@@ -41,12 +39,19 @@ wordPlacement <- function(paper,wd){
 
 
 
-
-
 #wordHist: filelist,nwords=10 to histogram output and plot.
 #Generate a histogram of how many times the top 10 words are used, but allow me to change the default number of "top words"
 #wordHist(paper, top=20)
-
+wordHist <- function(paper,top=10){
+  paper.vector <- unlist(paper)
+  fre.list <- table(paper)
+  sorted.list <- sort(fre.list,decreasing=T)
+  wd.sorted <- head(sorted.list,top)
+  wd.sorted.name <- names(wd.sorted)
+                                     #how to plot histogram
+  
+  return(wd.sorted)
+}
 
 
 
