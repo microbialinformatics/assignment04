@@ -1,7 +1,10 @@
 # readPaper: file to a list. 
 #given a file name, create a list variable that contains any necessary information
 #paper <- readPaper("mothur.txt") 
-
+readPaper <- function(paper){
+  paper <- scan(paper,"")   # list????????
+  return(paper)
+}
 
 
 
@@ -9,6 +12,16 @@
 #wordCount: filelist, word to vector of numbers.
 #if I supply the output from readPaper and a word (or a vector of words), tell me how many times the word(s) shows up
 #wordCount(paper, "mothur")
+wordCount <- function(paper,wd){
+  paper <- scan(paper,"")
+  count <- 0
+  for(i in 1:length(paper)){
+  if (paper[i] == wd){
+    count <- count+1
+  } 
+  }
+  return(count)
+}
 
 
 
