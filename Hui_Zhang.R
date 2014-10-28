@@ -58,6 +58,7 @@ wordHist <- function(paper,top=10){
 #nextWord: filelist, word to vector of counts.
 #if I give a word, tell me the frequency of words that follow it
 #nextWord(paper, "mothur")
+#????confused about question?????
 nextWord <- function(paper,wd){
   count <- 0
     for(i in 1:length(paper)){
