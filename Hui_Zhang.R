@@ -101,10 +101,14 @@ previousWord <- function(paper,wd){
 
 
 
-#surpriseMe: filelist,??? to ????.
+#surpriseMe: filelist,word to word.
 #create a function "surpriseMe" that does a task of your choosing
 #surpriseMe(paper, ...)
 supriseMe <- function(paper,wd1,wd2){
-  
-  
+  for(i in 1:length(paper)){
+    if (paper[i] == wd1){ 
+      paper[i] <- wd2
+    }
+  }
+  return(paper)  
 }
