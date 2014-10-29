@@ -28,16 +28,15 @@ mothurlist # a test variable created to make sure the function worked
 #tell how many times a word occurs in the paper
 #given a list containing the words in a file, tell how many times the word occurs
 wordCount<-function(wordlist, word) {
-  #how to tell r that this is a list and an element of the lst
   ###problem!!
-  index.word<-(wordlist$word) #store all locations of word
+  index.word<-wordlist$word #store all locations of word
   vec.index.word<-as.vector(index.word, mode="numeric") 
 #store as a vector to extract elements
   #return the length of the vector that has all occurences of word
 return(length(vec.index.word))
 }
 #test code
-wordCount(mothurlist, this)
+wordCount(mothurlist,the)
 
 ##########################
 #3.
