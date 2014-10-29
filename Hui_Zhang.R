@@ -15,8 +15,9 @@ readPaper <- function(paper){
 #wordCount(paper, "mothur")
 wordCount <- function(paper,wd){
   count <- 0
-  for(i in 1:length(paper)){
-  if (paper[i] == wd){
+  paper.vector <- unlist(paper)
+  for(i in 1:length(paper.vector)){
+  if (paper.vector[i] == wd){
     count <- count+1
   } 
   }
@@ -29,8 +30,9 @@ wordCount <- function(paper,wd){
 #if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
 #wordPlacement(paper, "mothur")
 wordPlacement <- function(paper,wd){
-    for(i in 1:length(paper)){
-    if (paper[i] == wd){ 
+  paper.vector <- unlist(paper)  
+  for(i in 1:length(paper.vector)){
+    if (paper.vector[i] == wd){ 
       break
     }
   }
@@ -49,7 +51,7 @@ wordHist <- function(paper,top=10){
   sorted.list <- sort(fre.list,decreasing=T)
   wd.sorted <- head(sorted.list,top)
   wd.sorted.name <- names(wd.sorted)
-  plot <- barplot(sorted.list[1:10],xlab="Words",ylab="Used time",main="Used times of words")
+  plot <- barplot(sorted.list[1:top],xlab="Words",ylab="Used time",main="Used times of words",axes=TRUE)
   return(wd.sorted[1:top])
 }
 
@@ -61,14 +63,15 @@ wordHist <- function(paper,top=10){
 #????confused about question?????
 nextWord <- function(paper,wd){
   count <- 0
-    for(i in 1:length(paper)){
-    if (paper[i] == wd){
-      wd.next <- paper[i+1]
+  paper.vector <- unlist(paper)
+    for(i in 1:length(paper.vector)){
+    if (paper.vector[i] == wd){
+      wd.next <- paper.vector[i+1]
       break
     }
     }
-    for(j in 1:length(paper)){
-      if(paper[j]== wd.next){
+    for(j in 1:length(paper.vector)){
+      if(paper.vector[j]== wd.next){
         count <- count+1
         wd.count <- c(wd.next,count)
       }
@@ -84,14 +87,15 @@ nextWord <- function(paper,wd){
 #previousWord(paper, "mothur")
 previousWord <- function(paper,wd){
   count <- 0
-  for(i in 1:length(paper)){
-    if (paper[i] == wd){
-      wd.next <- paper[i-1]
+  paper.vector <- unlist(paper)
+  for(i in 1:length(paper.vector)){
+    if (paper.vector[i] == wd){
+      wd.next <- paper.vector[i-1]
       break
     }
   }
-  for(j in 1:length(paper)){
-    if(paper[j]== wd.next){
+  for(j in 1:length(paper.vector)){
+    if(paper.vector[j]== wd.next){
       count <- count+1
       wd.count <- c(wd.next,count)
     }
@@ -105,10 +109,11 @@ previousWord <- function(paper,wd){
 #create a function "surpriseMe" that does a task of your choosing
 #surpriseMe(paper, ...)
 supriseMe <- function(paper,wd1,wd2){
-  for(i in 1:length(paper)){
-    if (paper[i] == wd1){ 
-      paper[i] <- wd2
+  paper.vector <- unlist(paper)
+  for(i in 1:length(paper.vector)){
+    if (paper.vector[i] == wd1){ 
+      paper.vector[i] <- wd2
     }
   }
-  return(paper)  
+  return(paper.vector)  
 }
