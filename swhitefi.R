@@ -28,9 +28,8 @@ mothurlist # a test variable created to make sure the function worked
 #tell how many times a word occurs in the paper
 #given a list containing the words in a file, 
 #tell how many times the word occurs
-#provide list and "word". the word but be in "" 
+#provide list and "word". the word must be in "" 
 wordCount<-function(x, y) {
-  ###problem!!
   index.word<-x[[y]] #store all locations of word
   vec.index.word<-as.vector(index.word, mode="numeric") 
 #store as a vector to extract elements
@@ -55,38 +54,49 @@ WordPlacement(mothurlist, "this")
 #4.
 #create histogram of occurences of top 10 words in paper
 #given list of words in paper and a number of top words
-#THIS DOES NOT WORK
 wordHist<-function(wordlist,n) {
   freqs<-sapply(wordlist, length)#wordlist frequency list
   ranklist<-rank(freqs) #rank the frequency list
-  for (i in n<=rank(ranklist))  #only use the ranks <= to the rank you want
+  for (rank in ranklist<=n)  #only use the ranks <= to the rank you want
   freqsort<-wordlist[sort(freqs)]#order the new frequency list by frequency
   nwords<-length(freqsort) # get length of the list
-  freqsplot<-sapply(freqsort[1:nwords],length)
-  
-  return(barplot(freqsplot))
+  freqsplot<-sapply(freqsort[round(0.9*nwords):nwords],length) #
+  return(barplot(freqsplot, xlab="word", ylab="frequency",main=("frequency of word in paper"), col="blue"))
 }
-
-
-wordHist(mothurlist,10)  
+####test code
+wordHist(mothurlist,1)  
   
-  sort.n.word<-sort(nchar(wordlist)) #vector with each word and its frequency sorted by freq
-  top.words<-rank(sort.n.word <= i) #if it has a rank in i range put it in a new vector
-  barplot(top.words) #sort by times each word occurs
-  print(top.words)
-  }
-  
-wordHist(mothurlist, 4)
-
 ############################
 #5.
 #function tells frequency of words after word given
-nextWord<-function(wordlist, word){
+nextWord<-function(x, y) {
+  index.word<-x[[y]] #store locations of word given
+  one.index.word<-(index.word+2) #store word after index word loctions in list
+  loc<-(x[one.index.word]) #store locations of next word
+  unlistloc<-unlist(loc)
+  lengthloc<-(names(unlistloc))
+  return(lengthloc)
+}
+
+#now print names of each variable in vecloc
+#then find locations of each of those names in original list
+#store this as a vector
+#return the length of these vectors
+
+
+  for(i in 1:length(loc))
+    #count numbr of locations for each element in loc
+    #
+  print(names(loc))#print names of wordlist of locations of word +1
+}
   #make wordlist a vector
   #create vector containing all of the words word +1
   #get names and counts of words in +1 vector
-  return(countvector)
-}
+###try again
+
+#store all locations as a variable called locations
+#
+
 #############################
 #6.given word, tell frequency of previous word
 #same code as above but it will be word -1
