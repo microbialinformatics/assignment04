@@ -17,7 +17,7 @@ readPaper<-function(file) {
     word<-text[i] #index of the word in the paper
     wordlist[[word]] <- c(wordlist[[word]],i)
   }
-  return(wordlist) #return the list of words in the paper
+  return((wordlist)) #return the list of words in the paper
 }
 #######################testing function
 mothurlist<-readPaper("mothur.txt") #this tests the list
@@ -27,16 +27,16 @@ mothurlist # a test variable created to make sure the function worked
 #2.
 #tell how many times a word occurs in the paper
 #given a list containing the words in a file, tell how many times the word occurs
-wordCount<-function(wordlist, word) {
+wordCount<-function(x, y) {
   ###problem!!
-  index.word<-wordlist$word #store all locations of word
+  index.word<-x[[y]] #store all locations of word
   vec.index.word<-as.vector(index.word, mode="numeric") 
 #store as a vector to extract elements
   #return the length of the vector that has all occurences of word
 return(length(vec.index.word))
 }
 #test code
-wordCount(mothurlist,the)
+wordCount(mothurlist,this)
 
 ##########################
 #3.
@@ -85,7 +85,48 @@ previousWord<-function(wordlist, word){
 ##############################
 #7.
 #surprise function that does something
-surpriseMe<-function(something){
-  return(somethingelse)
+#find all the mothur's in the paper
+#replace them with different relatives
+surpriseMe<-function(l, w) {
+  wordlist<-scan(l,"")
+  charlist<-(strwrap(wordlist, simplify=T))
+             vecreplist<-grep("w", charlist)
+             print(replace(charlist,vecreplist, c("fathur",
+                                 "brothur",
+                                 "sistur",
+                                 "son",
+                                 "daughtur",
+                                 "grandmothur",
+                                 "grandfathur",
+                                 "grandson",
+                                 "granddaughtur",
+                                 "uncle",
+                                 "aunt",
+                                 "cousin",
+                                 "nephew",
+                                 "niece",
+                                 "fathur-in-law",
+                                 "mothur-in-law",
+                                 "brothur-in-law",
+                                 "sistur-in-law",
+                                 "great-grandfathur",
+                                 "great-grandmothur",
+                                 "step-daughtur",
+                                 "step-fathur",
+                                 "step-mothur",
+                                 "step-brothur",
+                                 "step-sistur",
+                                 "step-son",
+                                 "step-uncle",
+                                 "step-aunt",
+                                 "step-grandfathur",
+                                 "step-grandmothur",
+                                 "half-brothur",
+                                 "half-sistur",
+                                 "ex-husbund",
+                                "ex-wife")))
 }
-  
+
+###################
+#sources
+# https://stat.ethz.ch/R-manual/R-devel/library/base/html/strwrap.html
