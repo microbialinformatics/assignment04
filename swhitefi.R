@@ -26,7 +26,9 @@ mothurlist # a test variable created to make sure the function worked
 ##############################
 #2.
 #tell how many times a word occurs in the paper
-#given a list containing the words in a file, tell how many times the word occurs
+#given a list containing the words in a file, 
+#tell how many times the word occurs
+#provide list and "word". the word but be in "" 
 wordCount<-function(x, y) {
   ###problem!!
   index.word<-x[[y]] #store all locations of word
@@ -35,8 +37,6 @@ wordCount<-function(x, y) {
   #return the length of the vector that has all occurences of word
 return(length(vec.index.word))
 }
-#test code
-wordCount(mothurlist,this)
 
 ##########################
 #3.
@@ -85,47 +85,20 @@ previousWord<-function(wordlist, word){
 ##############################
 #7.
 #surprise function that does something
-#find all the mothur's in the paper
-#replace them with different relatives
+#find all times a word of interest occurs in the paper
+#replace this word with different relatives
+#give l= "file.txt", "w"= a word in the file
+#replace that word with different relatives
+#example("mothur.txt, "mothur")
 surpriseMe<-function(l, w) {
-  wordlist<-scan(l,"")
-  charlist<-(strwrap(wordlist, simplify=T))
-             vecreplist<-grep("w", charlist)
-             print(replace(charlist,vecreplist, c("fathur",
-                                 "brothur",
-                                 "sistur",
-                                 "son",
-                                 "daughtur",
-                                 "grandmothur",
-                                 "grandfathur",
-                                 "grandson",
-                                 "granddaughtur",
-                                 "uncle",
-                                 "aunt",
-                                 "cousin",
-                                 "nephew",
-                                 "niece",
-                                 "fathur-in-law",
-                                 "mothur-in-law",
-                                 "brothur-in-law",
-                                 "sistur-in-law",
-                                 "great-grandfathur",
-                                 "great-grandmothur",
-                                 "step-daughtur",
-                                 "step-fathur",
-                                 "step-mothur",
-                                 "step-brothur",
-                                 "step-sistur",
-                                 "step-son",
-                                 "step-uncle",
-                                 "step-aunt",
-                                 "step-grandfathur",
-                                 "step-grandmothur",
-                                 "half-brothur",
-                                 "half-sistur",
-                                 "ex-husbund",
-                                "ex-wife")))
+  wordlist<-scan(l,"")#create list from file
+  charlist<-(strwrap(wordlist, simplify=T)) #make this list a character 
+             vecreplist<-grep(w, charlist) #make vector of locations of the word in the list
+             better<-(replace(charlist, vecreplist, c("brothur","sistur","son","daughtur","grandmothur","grandfathur","grandson","granddaughtur","uncle","aunt","cousin","nephew","niece","fathur-in-law","mothur-in-law","brothur-in-law","sistur-in-law","great-grandfathur","great-grandmothur","step-daughtur","step-fathur","step-mothur","step-brothur","step-sistur","step-son"))) 
+  best<-cat(strwrap(better, simplify=T), sep=" ") #convert to wrap-text paper format
+  print(best)
 }
+
 
 ###################
 #sources
