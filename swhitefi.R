@@ -41,30 +41,37 @@ return(length(vec.index.word))
 ##########################
 #3.
 #function prints character position of word from begining of paper
-WordPlacement<-function(wordlist, word){
-  #create vector from list where letters and spaces become a single string
-  #find locations where word is present
-  #print location of first letter
-  ulwordlist<-unlist(wordlist)
-  return(ulwordlist)
+#assuming characters are the words in the paper not the individual numbers + spaces
+#I tried to do this with characters by making all of the words in the paper into a string
+#and then tried to count the location in the string but it was getting complicated and we
+#didnt cover that in class so I think this is what you are asking for in this question?
+WordPlacement<-function(x, y){
+index.word<-x[[y]]#locations of the word
+print(index.word)
 }
 ####test code
-WordPlacement(mothurlist)
+WordPlacement(mothurlist, "this")
 ###########################
 #4.
 #create histogram of occurences of top 10 words in paper
 #given list of words in paper and a number of top words
-wordHist<-function(wordlist,nwords){
-  noccurword<-nchar(wordlist) #vector with each word and its frequency
-  sort.occur.word<-sort(noccurword) #sort by times each word occurs
-  rank<-.....#create variable to contain the rank of each word
-  #make historgram of <=rank of nwords
+wordHist<-function(wordlist) {
+  freqs<-sapply(wordlist, length)#wordlist frequency list
+  freqsort<-wordlist[sort(freqs)]#order the frequency list by frequency
+  nwords<-length(freqsort)
+  freqsplot<-sapply(freqsort[round(0.9*nwords):nwords],length)
+  return(barplot(freqsplot))
+}
+wordHist(mothurlist)  
   
-
+  sort.n.word<-sort(nchar(wordlist)) #vector with each word and its frequency sorted by freq
+  top.words<-rank(sort.n.word <= i) #if it has a rank in i range put it in a new vector
+  barplot(top.words) #sort by times each word occurs
+  print(top.words)
   }
   
-return(hist(topnwords))
-}
+wordHist(mothurlist, 4)
+
 ############################
 #5.
 #function tells frequency of words after word given
