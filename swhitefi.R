@@ -54,17 +54,15 @@ WordPlacement(mothurlist, "this")
 #4.
 #create histogram of occurences of top 10 words in paper
 #given list of words in paper and a number of top words
-wordHist<-function(wordlist,n) {
-  freqs<-sapply(wordlist, length)#wordlist frequency list
-  ranklist<-rank(freqs) #rank the frequency list
-  for (rank in ranklist<=n)  #only use the ranks <= to the rank you want
-  freqsort<-wordlist[sort(freqs)]#order the new frequency list by frequency
-  nwords<-length(freqsort) # get length of the list
-  freqsplot<-sapply(freqsort[round(0.9*nwords):nwords],length) #
-  return(barplot(freqsplot, xlab="word", ylab="frequency",main=("frequency of word in paper"), col="blue"))
+wordHist<-function(wordlist,n){
+  freqs<-sapply(wordlist,length)#wordlist frequency list
+  ranklist<-sort(freqs, decreasing=T) #sort the frequency list by rank
+  freqsort<-ranklist[n:1] #new list of frequencies in range <=n
+  return(barplot(freqsort, xlab="word", ylab="frequency",main=("frequency of word in paper"),col=c(1:500)))
 }
+
 ####test code
-wordHist(mothurlist,1)  
+wordHist(mothurlist,17)  
   
 ############################
 #5.
