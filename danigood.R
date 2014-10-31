@@ -62,3 +62,25 @@ nextWord <- function(filelist, word){
 	filelist <- as.data.frame(table(filelist))
 	filelist$Freq
 }
+
+# Ok next. The next function is called previousWord and the inputs will be a filelist (readPaper 
+# output) and a word, and the output should be the frequency of the words that are
+# before that word.
+
+previousWord <- function(filelist, word){
+	start <- which(filelist == word)
+	filelist <- filelist[1:start[1]]
+	filelist <- unlist(filelist)
+	filelist <- as.data.frame(table(filelist))
+	filelist$Freq
+}
+
+# Oh boy a surpriseMe function... let's see. Ok I've got it. I'm a busy woman.
+# I want an estimate for how long it's going to take to read this file. I will make
+# a function surpriseMe where the input is the filelist and what your average
+# words per minute reading speed is. The default will be 180 wpm as that is the
+# speed the average adult reads on a computer.
+
+surpriseMe <- function(filelist, wpm=180){
+	speed <- length(filelist)/wpm
+}
