@@ -51,3 +51,14 @@ wordHist <- function(filelist, nwords=10){
 
 # Boom! Man that was a pain.
 
+# Ok next. The next function is called nextWord and the inputs will be a filelist (readPaper 
+# output) and a word, and the output should be the frequency of the words that follow
+# that word.
+
+nextWord <- function(filelist, word){
+	start <- which(filelist == word)
+	filelist <- filelist[start[1]:length(filelist)]
+	filelist <- unlist(filelist)
+	filelist <- as.data.frame(table(filelist))
+	filelist$Freq
+}
