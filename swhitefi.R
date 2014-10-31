@@ -40,10 +40,14 @@ return(length(vec.index.word))
 ##########################
 #3.
 #function prints character position of word from begining of paper
-#assuming characters are the words in the paper not the individual numbers + spaces
-#I tried to do this with characters by making all of the words in the paper into a string
+#NOTE:assuming characters are the words in the paper not the individual numbers + spaces
+#I tried to do this with letters+spaces by making all of the words in the paper into a string
 #and then tried to count the location in the string but it was getting complicated and we
 #didnt cover that in class so I think this is what you are asking for in this question?
+#if not I can add the code i attempted 
+
+#provide (x) a list of words indexed from a text file, and
+#("y"), a word to find it's locations.
 WordPlacement<-function(x, y){
 index.word<-x[[y]]#locations of the word
 print(index.word)
@@ -125,3 +129,4 @@ surpriseMe<-function(l, w) {
 ###################
 #sources
 # https://stat.ethz.ch/R-manual/R-devel/library/base/html/strwrap.html
+#https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/palettes.html
