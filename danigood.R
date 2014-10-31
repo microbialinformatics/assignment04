@@ -6,6 +6,8 @@ rm(list=ls())
 # name and the function will create a list of necessary info 
 # (which is? text? title perhaps?) Looking over the file and other commands I think
 # maybe just text? Let's jump in.
+
 readPaper <- function(x){
-	
+	file <- scan(x, what = "")
+	file <- as.list(file)
 }
