@@ -11,3 +11,11 @@ readPaper <- function(x){
 	file <- scan(x, what = "")
 	file <- as.list(file)
 }
+
+# Ok for this next function, I want to make a function named wordCount where 
+# I input a list (readPaper output) and a word, and the output is a vector with one
+# number that equals the number of times that word shows up. So for this,
+# I'm going to want to do some sort of list = word thing and then since
+# true=1, sum the vector and output said number. Is this case sensitive?
+# May want to think about that.
+
