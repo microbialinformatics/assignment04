@@ -13,6 +13,8 @@ readPaper <- function(file){
 
 #wordCount command
 wordCount <- function(filelist, word){
+  vector <- as.vector(filelist)   #Convert filelist to vector
+  
  
 }
 
