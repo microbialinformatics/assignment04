@@ -27,3 +27,14 @@ wordCount <- function(filelist, word){
 # After consideration, case sensitivity is not something I think I can easily do
 # since I do not know what words will be inputed. 
 
+# Ok next function. This one will be called wordPlacement and I will want to input
+# a filelist (readPaper output) and a word and get out the positiion of each time
+# that word appears in a vector of numbers.
+
+wordPlacement <- function(filelist, word){
+	which(filelist == word)
+}
+
+# I used this forum to find the 'which' function <http://ubuntuforums.org/showthread.php?t=939573>
+
+
