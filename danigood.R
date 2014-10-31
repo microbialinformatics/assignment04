@@ -8,7 +8,7 @@ rm(list=ls())
 # maybe just text? Let's jump in.
 
 readPaper <- function(file){
-	filelist <- scan(x, what = "")
+	filelist <- scan(file, what = "")
 	filelist <- as.list(filelist)
 }
 
