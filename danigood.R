@@ -37,4 +37,13 @@ wordPlacement <- function(filelist, word){
 
 # I used this forum to find the 'which' function <http://ubuntuforums.org/showthread.php?t=939573>
 
+# Onto the next function. So I want to make a function named wordHist that amkes
+# a histogram for the number of times the top ten words are used, and I have to 
+# make the input changeable for Pat to change the number of words to use. Yikes.
+
+wordHist <- function(filelist, nwords=10){
+	filelist <- unlist(filelist)
+	filelist <- as.data.frame(table(p))
+}
+
 
