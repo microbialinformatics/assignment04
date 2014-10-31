@@ -13,21 +13,15 @@ readPaper <- function(file){
 
 #wordCount command
 wordCount <- function(filelist, word){
-  vector <- as.vector(filelist)
-  for(i in 1:lenght(vector)){
-    
-    print(i)
-  }
-  
-  return(sum.sq)
+ 
 }
 
 
 #wordPlacement command
 wordPlacement <- function(filelist, word){
-  squared <- x^2
-  sum.sq <- sum(squared)
-  return(sum.sq)
+  vector <- as.vector(filelist)   #Convert filelist to vector
+  nword <- which(word==vector)    #Where the word is found
+  return(nword)
 }
 
 
