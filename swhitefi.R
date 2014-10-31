@@ -2,6 +2,8 @@
 #in the paper 
 #read in the words from the paper 
 #source your file in R
+
+rm(list=ls()) #remove all variables from workspace
 #read in the file
 read.delim("mothur.txt")
 ##
@@ -48,12 +50,12 @@ return(length(vec.index.word))
 
 #provide (x) a list of words indexed from a text file, and
 #("y"), a word to find it's locations.
-WordPlacement<-function(x, y){
+wordPlacement<-function(x, y){
 index.word<-x[[y]]#locations of the word
 print(index.word)
 }
 ####test code
-WordPlacement(mothurlist, "this")
+ordPlacement(mothurlist, "this")
 ###########################
 #4.
 #create histogram of occurences of top n words in a list
@@ -109,11 +111,10 @@ surpriseMe<-function(l, w) {
   wordlist<-scan(l,"")#create list from file
   charlist<-(strwrap(wordlist, simplify=T)) #make this list a character 
              vecreplist<-grep(w, charlist) #make vector of locations of the word in the list
-             better<-(replace(charlist, vecreplist, c("brothur","sistur","son","daughtur","grandmothur","grandfathur","grandson","granddaughtur","uncle","aunt","cousin","nephew","niece","fathur-in-law","mothur-in-law","brothur-in-law","sistur-in-law","great-grandfathur","great-grandmothur","step-daughtur","step-fathur","step-mothur","step-brothur","step-sistur","step-son"))) 
+             better<-(replace(charlist, vecreplist, c("brothur","sistur","son","daughtur","grandmothur","grandfathur","grandson","granddaughtur","uncle","aunt","cousin","nephew","niece","fathur-in-law","mothur-in-law","brothur-in-law","sistur-in-law","great-grandfathur","great-grandmothur","step-daughtur","step-fathur","step-mothur","step-brothur","step-sistur","step-son","half-sistur"))) 
   best<-cat(strwrap(better, simplify=T), sep=" ") #convert to wrap-text paper format
   print(best)
 }
-
 
 ###################
 #sources
