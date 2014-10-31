@@ -23,3 +23,7 @@ wordCount <- function(filelist, word){
 	count <- filelist == word
 	sum(count)
 }
+
+# After consideration, case sensitivity is not something I think I can easily do
+# since I do not know what words will be inputed. 
+
