@@ -43,7 +43,8 @@ wordPlacement <- function(filelist, word){
 
 wordHist <- function(filelist, nwords=10){
 	filelist <- unlist(filelist)
-	filelist <- as.data.frame(table(p))
+	filelist <- as.data.frame(table(filelist))
+	filelist <- filelist[order(filelist$Freq, decreasing =TRUE), ]
 }
 
 
