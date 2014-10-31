@@ -120,3 +120,4 @@ surpriseMe<-function(l, w) {
 # https://stat.ethz.ch/R-manual/R-devel/library/base/html/strwrap.html
 #https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/palettes.html
 #http://www.manythings.org/vocabulary/lists/a/words.php?f=relatives
+#http://stackoverflow.com/questions/4605206/drop-columns-r-data-frame
