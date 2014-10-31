@@ -41,11 +41,11 @@ wordPlacement <- function(filelist, word){
 # a histogram for the number of times the top ten words are used, and I have to 
 # make the input changeable for Pat to change the number of words to use. Yikes.
 
-wordHist <- function(filelist, nwords=10){
+wordHist <- function(filelist, top=10){
 	filelist <- unlist(filelist)
 	filelist <- as.data.frame(table(filelist))
 	filelist <- filelist[order(filelist$Freq, decreasing =TRUE), ]
-	p <- filelist[1:nwords,]
+	p <- filelist[1:top,]
 	barplot(p$Freq, names.arg =factor(p$filelist), main = "Top Words", xlab = "Top Words in File", ylab= "Frequency")
 }
 
@@ -83,4 +83,5 @@ previousWord <- function(filelist, word){
 
 surpriseMe <- function(filelist, wpm=180){
 	speed <- length(filelist)/wpm
+	print(speed)
 }
