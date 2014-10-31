@@ -7,9 +7,9 @@ rm(list=ls())
 # (which is? text? title perhaps?) Looking over the file and other commands I think
 # maybe just text? Let's jump in.
 
-readPaper <- function(x){
-	file <- scan(x, what = "")
-	file <- as.list(file)
+readPaper <- function(file){
+	filelist <- scan(x, what = "")
+	filelist <- as.list(filelist)
 }
 
 # Ok for this next function, I want to make a function named wordCount where 
@@ -19,3 +19,7 @@ readPaper <- function(x){
 # true=1, sum the vector and output said number. Is this case sensitive?
 # May want to think about that.
 
+wordCount <- function(filelist, word){
+	count <- filelist == word
+	sum(count)
+}
