@@ -73,7 +73,16 @@ wordHist(mothurlist,17)
 #5.
 #function tells frequency of words after word given
 nextWord<-function(x, y) {
+  #x has all words as variables with their location
   index.word<-x[[y]] #store locations of word given
+  nextwordnames<-x[(index.word+1)] #find location of words that come after these locations
+  nextwordsum<-summary(nextwordnames)
+  vecnextwordsum<-nextwordsum[,!(colnames(nextwordsum) %in% c("Class","Mode"))]
+  return(vecnextwordsum)
+}
+##test code
+nextWord(mothurlist,"for")
+
   one.index.word<-(index.word+2) #store word after index word loctions in list
   loc<-(x[one.index.word]) #store locations of next word
   unlistloc<-unlist(loc)
@@ -114,7 +123,7 @@ previousWord<-function(wordlist, word){
 #find all times a word of interest occurs in the paper
 #replace this word with different relatives
 #give l= "file.txt", "w"= a word in the file
-#replace that word with different relatives
+#replace that word with mothur's relatives
 #example("mothur.txt, "mothur")
 surpriseMe<-function(l, w) {
   wordlist<-scan(l,"")#create list from file
@@ -130,3 +139,4 @@ surpriseMe<-function(l, w) {
 #sources
 # https://stat.ethz.ch/R-manual/R-devel/library/base/html/strwrap.html
 #https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/palettes.html
+#http://www.manythings.org/vocabulary/lists/a/words.php?f=relatives
