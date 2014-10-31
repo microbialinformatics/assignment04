@@ -71,7 +71,7 @@ wordHist(mothurlist,17)
   
 ############################
 #5.
-#function tells frequency of words after word given
+#function tells frequency of words in list (x) after word given(y)
 nextWord<-function(x, y) {
   #x has all words as variables with their location
   index.word<-x[[y]] #store locations of word given
@@ -81,13 +81,13 @@ nextWord<-function(x, y) {
   return(vecnextwordsum)
 }
 ##test code
-nextWord(mothurlist,"for")
+nextWord(mothurlist,"the")
 
   
 #############################
 #6.given word, tell frequency of previous word
-#same code as above but it will be word -1
-previousWord<-function(wordlist, word){
+#function tells frequency of words in list (x) after word given(y)
+previousWord<-function(x, y){
   #x has all words as variables with their location
   index.word<-x[[y]] #store locations of word given
   nextwordnames<-x[(index.word-1)] #find location of words that come after these locations
@@ -95,7 +95,8 @@ previousWord<-function(wordlist, word){
   vecnextwordsum<-nextwordsum[,!(colnames(nextwordsum) %in% c("Class","Mode"))]
   return(vecnextwordsum)
 }
-previousWord(mothurlist,"mothr")
+#####test code
+previousWord(mothurlist,"mothur")
 ##############################
 #7.
 #surprise function that does something
