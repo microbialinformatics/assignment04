@@ -52,8 +52,9 @@ print(index.word)
 WordPlacement(mothurlist, "this")
 ###########################
 #4.
-#create histogram of occurences of top 10 words in paper
-#given list of words in paper and a number of top words
+#create histogram of occurences of top n words in a list
+#provide the list of words(wordlist), and (n), a number of top words
+#return their frequencies in a rainbow histogram
 wordHist<-function(wordlist,n){
   freqs<-sapply(wordlist,length)#wordlist frequency list
   ranklist<-sort(freqs, decreasing=T) #sort the frequency list by rank
