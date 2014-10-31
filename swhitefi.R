@@ -83,40 +83,19 @@ nextWord<-function(x, y) {
 ##test code
 nextWord(mothurlist,"for")
 
-  one.index.word<-(index.word+2) #store word after index word loctions in list
-  loc<-(x[one.index.word]) #store locations of next word
-  unlistloc<-unlist(loc)
-  lengthloc<-(names(unlistloc))
-  return(lengthloc)
-}
-
-#now print names of each variable in vecloc
-#then find locations of each of those names in original list
-#store this as a vector
-#return the length of these vectors
-
-
-  for(i in 1:length(loc))
-    #count numbr of locations for each element in loc
-    #
-  print(names(loc))#print names of wordlist of locations of word +1
-}
-  #make wordlist a vector
-  #create vector containing all of the words word +1
-  #get names and counts of words in +1 vector
-###try again
-
-#store all locations as a variable called locations
-#
-
+  
 #############################
 #6.given word, tell frequency of previous word
 #same code as above but it will be word -1
 previousWord<-function(wordlist, word){
-  #
-  #
-  return(countvector)
+  #x has all words as variables with their location
+  index.word<-x[[y]] #store locations of word given
+  nextwordnames<-x[(index.word-1)] #find location of words that come after these locations
+  nextwordsum<-summary(nextwordnames)
+  vecnextwordsum<-nextwordsum[,!(colnames(nextwordsum) %in% c("Class","Mode"))]
+  return(vecnextwordsum)
 }
+previousWord(mothurlist,"mothr")
 ##############################
 #7.
 #surprise function that does something
