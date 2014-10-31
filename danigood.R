@@ -45,6 +45,9 @@ wordHist <- function(filelist, nwords=10){
 	filelist <- unlist(filelist)
 	filelist <- as.data.frame(table(filelist))
 	filelist <- filelist[order(filelist$Freq, decreasing =TRUE), ]
+	p <- filelist[1:nwords,]
+	barplot(p$Freq, names.arg =factor(p$filelist), main = "Top Words", xlab = "Top Words in File", ylab= "Frequency")
 }
 
+# Boom! Man that was a pain.
 
