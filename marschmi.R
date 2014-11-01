@@ -11,19 +11,7 @@ nextWord(paper, "mothur")           #I may use a different word
 previousWord(paper, "mothur")       #I may use a different word
 surpriseMe(paper, ...)
 
-
-
-
-
-
-
-
-#Note: for histogram problem, you should have the word names on the x-axis and their frequency in the y-axis (hist will not work...)
-
-
-
-
-
+###########################################################################
 
 readPaper <- function(file){
   #scan("mothur.txt", what = "list", sep = "") this one works.
@@ -44,23 +32,26 @@ wordCount(paper, "mothur")
 #Read about functions here:
   #1.  http://stackoverflow.com/questions/1923273/counting-the-number-of-elements-with-the-values-of-x-in-a-vector
 
-
+###########################################################################
 
 
 Command | Input | Output | Functionality
 `wordPlacement` | `filelist`, `word` | vector of numbers | if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
 wordPlacement <- function(filelist, word){
-  #if I supply the output from readPaper and a word, 
   #tell me the starting character position of that word 
-  #indexed from the beginning of the paper
   
-  filelist <- unlist(filelist)
-  sum(filelist == word)
+  #indexed from the beginning of the paper
 }
-wordCount(paper, "mothur")
+wordPlacement(paper, "mothur")
+
+
 
 Command | Input | Output | Functionality
 `wordHist` | `filelist`, `nwords=10`| histogram output and plot | Generate a histogram of how many times the top 10 words are used, but allow me to change the default number of "top words"
+
+#Note: for histogram problem, 
+#you should have the word names on the x-axis and their 
+#frequency in the y-axis (hist will not work...)
 
 
 Command | Input | Output | Functionality
