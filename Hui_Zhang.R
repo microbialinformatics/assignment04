@@ -1,3 +1,7 @@
+
+rm(list=ls())                              #remove all the variables from the workspace
+
+
 #readPaper Function 
 #Input a file name, and create a list variable that contains necessary information
 #For exmaple: paper <- readPaper("mothur.txt") 
