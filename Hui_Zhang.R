@@ -1,119 +1,120 @@
-# readPaper: file to a list. 
-#given a file name, create a list variable that contains any necessary information
-#paper <- readPaper("mothur.txt") 
+#readPaper Function 
+#Input a file name, and create a list variable that contains necessary information
+#For exmaple: paper <- readPaper("mothur.txt") 
 readPaper <- function(paper){
-  paper <- scan(paper,"")
-  paper <- list(paper)
-  return(paper)
+  paper <- scan(paper,"")                   #read file
+  paper <- list(paper)                      #convert it to a list
+  return(paper)                             #return the list
 }
 
 
 
 
-#wordCount: filelist, word to vector of numbers.
-#if I supply the output from readPaper and a word (or a vector of words), tell me how many times the word(s) shows up
-#wordCount(paper, "mothur")
+#wordCount Function
+#Calculate how many times the word(s) shows up in a file
+#For example: wordCount(paper, "mothur")
 wordCount <- function(paper,wd){
-  count <- 0
-  paper.vector <- unlist(paper)
-  for(i in 1:length(paper.vector)){
+  count <- 0                                #set initial counts
+  paper.vector <- unlist(paper)             #convert list to vector
+  for(i in 1:length(paper.vector)){         #for loop: from the fist vector to the last vector
   if (paper.vector[i] == wd){
-    count <- count+1
+    count <- count+1                        #if find the target word, count+1
   } 
   }
-  return(count)
+  return(count)                             #return counts
 }
 
 
 
-#wordPlacement: filelist, word to vector of numbers.
-#if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
-#wordPlacement(paper, "mothur")
+#wordPlacement Function
+#Find the starting character position of the word in the file
+#For example: wordPlacement(paper, "mothur")
 wordPlacement <- function(paper,wd){
-  paper.vector <- unlist(paper)  
-  for(i in 1:length(paper.vector)){
+  paper.vector <- unlist(paper)             #convert list to vector
+  for(i in 1:length(paper.vector)){         #for loop: from the beginning to the end
     if (paper.vector[i] == wd){ 
-      break
+      break                                 #when find the target word, stop the loop
     }
   }
-  return(i)
+  return(i)                                 #return the position of the word
 }
 
 
 
 
-#wordHist: filelist,nwords=10 to histogram output and plot.
-#Generate a histogram of how many times the top 10 words are used, but allow me to change the default number of "top words"
-#wordHist(paper, top=20)
+#wordHist Function
+#Generate a plot of most frequently used words in the file
+#For example: wordHist(paper, top=20)
 wordHist <- function(paper,top=10){
-  paper.vector <- unlist(paper)
-  fre.list <- table(paper)
-  sorted.list <- sort(fre.list,decreasing=T)
-  wd.sorted <- head(sorted.list,top)
-  wd.sorted.name <- names(wd.sorted)
+  paper.vector <- unlist(paper)                 #convert list to vector
+  fre.list <- table(paper)                      #find out the frequency of all words
+  sorted.list <- sort(fre.list,decreasing=T)    #sort the words by decreasing frequency
+  wd.sorted <- head(sorted.list,top)            #only show the top words
+  wd.sorted.name <- names(wd.sorted)            #show the words' name
   plot <- barplot(sorted.list[1:top],xlab="Words",ylab="Used time",main="Used times of words",axes=TRUE)
-  return(wd.sorted[1:top])
+                                                #plot the words with frequency   
+  return(wd.sorted[1:top])                      #return the words and its frequency
 }
 
 
 
-#nextWord: filelist, word to vector of counts.
-#if I give a word, tell me the frequency of words that follow it
-#nextWord(paper, "mothur")
-#????confused about question?????
+#nextWord Function
+#Show the frequency of unknown word that follow the known word
+#For example: nextWord(paper, "mothur")
 nextWord <- function(paper,wd){
-  count <- 0
-  paper.vector <- unlist(paper)
-    for(i in 1:length(paper.vector)){
-    if (paper.vector[i] == wd){
-      wd.next <- paper.vector[i+1]
-      break
+  count <- 0                                   #set initial count as 0
+  paper.vector <- unlist(paper)                #convert list to vector
+    for(i in 1:length(paper.vector)){          #for loop: from the beginning to the end
+    if (paper.vector[i] == wd){                #find the known word
+      wd.next <- paper.vector[i+1]             #set the unknown word and break
+      break                                    
     }
     }
-    for(j in 1:length(paper.vector)){
-      if(paper.vector[j]== wd.next){
-        count <- count+1
+    for(j in 1:length(paper.vector)){          #for loop: from the beginning to the end
+      if(paper.vector[j]== wd.next){           #find the unknown word and increase count by 1 each time
+        count <- count+1                       
         wd.count <- c(wd.next,count)
       }
     }
-   return(wd.count)
+   return(wd.count)                            #return the unknown word and frequency
 }
   
 
 
 
-#previousWord: filelist, word to vector of counts.
-#if I give a word, tell me the frequency of words that preceed it
+#previousWord Function
+#Show the frequency of unknown word that before the known word
 #previousWord(paper, "mothur")
-previousWord <- function(paper,wd){
-  count <- 0
-  paper.vector <- unlist(paper)
-  for(i in 1:length(paper.vector)){
+previousWord <- function(paper,wd){           
+  count <- 0                                   #set initial count as 0
+  paper.vector <- unlist(paper)                #convert list to vector
+  for(i in 1:length(paper.vector)){            #define the unknown word
     if (paper.vector[i] == wd){
       wd.next <- paper.vector[i-1]
       break
     }
   }
-  for(j in 1:length(paper.vector)){
+  for(j in 1:length(paper.vector)){            #find the unknown word and increase count by 1 each time found
     if(paper.vector[j]== wd.next){
       count <- count+1
       wd.count <- c(wd.next,count)
     }
   }
-  return(wd.count)
+  return(wd.count)                             #return the unknown word and frequency
 }
 
 
 
-#surpriseMe: filelist,word to word.
-#create a function "surpriseMe" that does a task of your choosing
-#surpriseMe(paper, ...)
+#surpriseMe Function
+#Replace a specific word in the file with another word or sentence
+#For example: surpriseMe(paper,"mothur","Happy_Halloween")
 supriseMe <- function(paper,wd1,wd2){
-  paper.vector <- unlist(paper)
-  for(i in 1:length(paper.vector)){
+  paper.vector <- unlist(paper)                #convert list to vector
+  for(i in 1:length(paper.vector)){            #find the old word and replace it with new word
     if (paper.vector[i] == wd1){ 
       paper.vector[i] <- wd2
     }
   }
-  return(paper.vector)  
+  paper <- list(paper.vector)                  #convert vector to list
+  return(paper)                                #return the new file
 }
