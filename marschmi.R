@@ -25,30 +25,39 @@ surpriseMe(paper, ...)
 
 
 
-
-
-
-
-Command | Input | Output | Functionality
-`readPaper` | `file` | a list | given a file name, create a list variable that contains any necessary information
-
-
-readPaper <- function(file = "x"){
+readPaper <- function(file){
   #scan("mothur.txt", what = "list", sep = "") this one works.
-  scan(file = "x", what = "list", sep = "") 
+  scan(file, what = list(""), sep = "") 
 }
-readPaper("mothur.txt")
+paper <- readPaper("mothur.txt")
+#read about the scan function here: 
+    #1. http://www.ats.ucla.edu/stat/r/modules/raw_data.htm
+    #2. R help
 
 
+wordCount <- function(filelist, word){
+  filelist <- unlist(filelist)
+  sum(filelist == word)
+}
+wordCount(paper, "mothur")
 
-Command | Input | Output | Functionality
-`wordCount` | `filelist`, `word` | vector of numbers | if I supply the output from readPaper and a word (or a vector of words), tell me how many times the word(s) shows up
+#Read about functions here:
+  #1.  http://stackoverflow.com/questions/1923273/counting-the-number-of-elements-with-the-values-of-x-in-a-vector
+
 
 
 
 Command | Input | Output | Functionality
 `wordPlacement` | `filelist`, `word` | vector of numbers | if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
-
+wordPlacement <- function(filelist, word){
+  #if I supply the output from readPaper and a word, 
+  #tell me the starting character position of that word 
+  #indexed from the beginning of the paper
+  
+  filelist <- unlist(filelist)
+  sum(filelist == word)
+}
+wordCount(paper, "mothur")
 
 Command | Input | Output | Functionality
 `wordHist` | `filelist`, `nwords=10`| histogram output and plot | Generate a histogram of how many times the top 10 words are used, but allow me to change the default number of "top words"
