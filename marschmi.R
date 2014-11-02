@@ -15,7 +15,7 @@ surpriseMe(paper, ...)
 
 readPaper <- function(file){
   #scan("mothur.txt", what = "list", sep = "") this one works.
-  scan(file, what = list(""), sep = "") 
+  unlist(scan(file, what = list(""), sep = ""))#[[1]] 
 }
 paper <- readPaper("mothur.txt")
 #read about the scan function here: 
@@ -32,18 +32,17 @@ wordCount(paper, "mothur")
 #Read about functions here:
   #1.  http://stackoverflow.com/questions/1923273/counting-the-number-of-elements-with-the-values-of-x-in-a-vector
 
-###########################################################################
 
-
-Command | Input | Output | Functionality
-`wordPlacement` | `filelist`, `word` | vector of numbers | if I supply the output from readPaper and a word, tell me the starting character position of that word indexed from the beginning of the paper
 wordPlacement <- function(filelist, word){
   #tell me the starting character position of that word 
-  
+  which(filelist == word)
   #indexed from the beginning of the paper
 }
 wordPlacement(paper, "mothur")
+#read about the which function here: 
+    #1. R help
 
+###########################################################################
 
 
 Command | Input | Output | Functionality
