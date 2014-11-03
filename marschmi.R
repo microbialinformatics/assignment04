@@ -14,13 +14,15 @@ surpriseMe(paper, ...)
 ###########################################################################
 
 readPaper <- function(file){
-  #scan("mothur.txt", what = "list", sep = "") this one works.
-  unlist(scan(file, what = list(""), sep = ""))#[[1]] 
+  list <- unlist(scan(file, what = list(""), sep = ""))#[[1]]
+  list <- gsub("[[:punct:]]", "", list)
+  list <- tolower(list)
 }
 paper <- readPaper("mothur.txt")
 #read about the scan function here: 
     #1. http://www.ats.ucla.edu/stat/r/modules/raw_data.htm
     #2. R help
+    #3. for gsub:  http://stackoverflow.com/questions/11498157/convert-punctuation-to-space
 
 
 wordCount <- function(filelist, word){
@@ -99,12 +101,49 @@ text(xx,par("usr")[3] - ofst, srt = g, adj = 1,labels=labs,xpd = TRUE)
 
 Command | Input | Output | Functionality
 `nextWord` | `filelist`, `word` | vector of counts | if I give a word, tell me the frequency of words that follow it
+ 
+nextWord <- function(filelist, word){
+  something <- which(filelist == word)
+  something2 <- something + 1
+  paper[something2[1]]
+  test<-(rep(NA,length(something2)))
+    for(i in 1:length(something2)){
+        test[i]<-  paper[something2[i]]
+    }
+  sort(table(test))
+}
+nextWord(paper, "data")
+
+
 
 
 Command | Input | Output | Functionality
 `previousWord` | `filelist`, `word` | vector of counts | if I give a word, tell me the frequency of words that preceed it
-
+previousWord <- function(filelist, word){
+  something <- which(filelist == word)
+  something2 <- something - 1
+  paper[something2[1]]
+  test<-(rep(NA,length(something2)))
+  for(i in 1:length(something2)){
+    test[i]<-  paper[something2[i]]
+  }
+  sort(table(test))
+}
+previousWord(paper, "data")
 
 Command | Input | Output | Functionality
 `surpriseMe` | `filelist`, ??? | ??? |create a function "surpriseMe" that does a task of your choosing
+surpriseMe <- function(filelist, word){
+  
+}
+surpriseMe(paper, "data")
+
+
+
+
+
+
+
+
+
 
