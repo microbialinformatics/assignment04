@@ -47,11 +47,55 @@ wordPlacement(paper, "mothur")
 
 Command | Input | Output | Functionality
 `wordHist` | `filelist`, `nwords=10`| histogram output and plot | Generate a histogram of how many times the top 10 words are used, but allow me to change the default number of "top words"
+wordHist <- function(filelist, top = 10){
+  #Generate a histogram of how many times the top 10 words are used, 
+  #but allow me to change the default number of "top words"
+  pap <- as.data.frame(table(paper))
+  colnames(pap) <- c("word", "freq")
+  arg <- order(pap$freq, decreasing = TRUE)
+  pap <- pap[arg, ]
+  pap <- head(pap, n=20)
+  x <- barplot(pap$freq, names = pap$word, col = "violetred", space = 1, 
+               xaxt="n",xlab="", ylab = "Frequency", main = "Word Frequencies")
+  labels <- pap$word
+  text(x, par(“usr”)[3], labels = labels, srt = 45, adj = c(1.1,1.1), xpd = TRUE) 
+  
+  
+  end_point = 0.5 + nrow(pap) + nrow(pap)-1 
+  #labs <- paste(pap$word)#, "word")
+  
+  
+  
+  text(seq(1.5,end_point,by=2), par("usr")[3]-0.25, 
+       srt = 60, adj= 1, xpd = TRUE, labels = paste(par$word))
+  
+  
+  
+  text(cex=1, x=x-.25, y=-10, labs, xpd=TRUE, srt=45)
+  #barplot(pap$freq, names = pap$word, col = "violetred", 
+  #        xaxt="n",xlab="", ylab = "Frequency", main = "Word Frequencies") 
+  #axis(side=1,at=pap$word,labels=FALSE)
+  #text(pap$word,par("usr")[3] - ofst, srt = g, adj = 1,labels=pap$word,xpd = TRUE)
+}
 
+wordHist(paper, top=20)
 #Note: for histogram problem, 
 #you should have the word names on the x-axis and their 
 #frequency in the y-axis (hist will not work...)
 
+
+text(pap$word, srt=45)
+
+
+plot(yy,xx,xaxt="n",xlab="")
+axis(side=1,at=xx,labels=FALSE)
+text(xx,par("usr")[3] - ofst, srt = g, adj = 1,labels=labs,xpd = TRUE)
+
+
+
+#Sources:
+  #1.  http://www.dummies.com/how-to/content/how-to-sort-data-frames-in-r.html
+  #2. http://haotu.wordpress.com/2013/07/09/angle-axis-x-labels-on-r-plot/
 
 Command | Input | Output | Functionality
 `nextWord` | `filelist`, `word` | vector of counts | if I give a word, tell me the frequency of words that follow it
