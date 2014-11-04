@@ -44,17 +44,15 @@ wordPlacement(paper, "mothur")
 
 
 wordHist <- function(filelist, top = 10){
-  #Generate a histogram of how many times the top 10 words are used, 
-  #but allow me to change the default number of "top words"
-  pap <- as.data.frame(table(filelist))
-  colnames(pap) <- c("word", "freq")
-  arg <- order(pap$freq, decreasing = TRUE)
-  pap <- pap[arg, ]
-  pap <- head(pap, n=top)
-  x <- barplot(pap$freq, names = pap$word, col = "royalblue", space = 1, 
+  pap <- as.data.frame(table(filelist))  #Make a data frame of all words in the list and its count.
+  colnames(pap) <- c("word", "freq")  #Change column names to make them more accurate  
+  arg <- order(pap$freq, decreasing = TRUE) #Order freq column by most to least abundant.
+  pap <- pap[arg, ]  #Order dataframe by the most to least abundant based on freq column
+  pap <- head(pap, n=top)  #take the number of rows from "top=?" input
+  x <- barplot(pap$freq, names = pap$word, col = "royalblue", space = 1, #Make a barplot of frequency
                xaxt="n",xlab="", ylab = "Frequency", main = "Word Frequencies")
-  labels <- pap$word
-  text(x, x=x-.5, y=-3.5, labels = labels, srt = 45, pos = 1, xpd = TRUE)
+  labels <- pap$word  #Create vector of names
+  text(x, x=x-.5, y=-3.5, labels = labels, srt = 45, pos = 1, xpd = TRUE) #Rotates labels so they look pretty.
 }
 wordHist(paper, top=20)
 #Sources:
@@ -71,36 +69,50 @@ nextWord <- function(filelist, word){
     for(i in 1:length(something2)){
         test[i]<-  filelist[something2[i]]  #Make a vector of all of the next words following the word of interest.
     }
-  sort(table(test))  #Make a vector with word and its counts and sort it by increasing abundance
+  sort(table(test))  #Make a vector with next word and its counts and sort it by increasing abundance
 }
-nextWord(paper, "data")
+nextWord(paper, "mothur")
 #Sources:
   #1.  Help with graduate student: Daniel Katz in SNRE.
 #########################
 
 
+previousWord <- function(filelist, word){
+  something <- which(filelist == word)  #Make a vector of indices of the occurences of the word of interest
+  something2 <- something - 1  #Get the index of the word that preceeds the word of interest.
+  test<-(rep(NA,length(something2)))   #Create a vector with the length of occurrences of the word of interest
+  for(i in 1:length(something2)){
+    test[i]<-  filelist[something2[i]]  #Make a vector of all of the previous words before the word of interest.
+  }
+  sort(table(test))  #Make a vector with previous word and its counts and sort it by increasing abundance
+}
+previousWord(paper, "mothur")
+#Sources:
+    #1.  Help with graduate student: Daniel Katz in SNRE.
+#########################
+
+
 ###########################################################################
 
-Command | Input | Output | Functionality
-`previousWord` | `filelist`, `word` | vector of counts | if I give a word, tell me the frequency of words that preceed it
-previousWord <- function(filelist, word){
-  something <- which(filelist == word)
-  something2 <- something - 1
-  paper[something2[1]]
-  test<-(rep(NA,length(something2)))
-  for(i in 1:length(something2)){
-    test[i]<-  paper[something2[i]]
-  }
-  sort(table(test))
-}
-previousWord(paper, "data")
 
-Command | Input | Output | Functionality
-`surpriseMe` | `filelist`, ??? | ??? |create a function "surpriseMe" that does a task of your choosing
 surpriseMe <- function(filelist, word){
-  
+  word_list <- unlist(scan("mothur.txt", what = "character", sep = ""))# Read in the text file.
+  letter_list <- readChar("mothur.txt", file.info("mothur.txt")$size) #http://stackoverflow.com/questions/9068397/import-text-file-as-single-character-string
+  letter_list <- gsub("[[:punct:]]", "", letter_list) #remove all of the punctuation
+  letter_list <- gsub("[[:space:]]", "", letter_list) #remove all spaces
+  letter_list <- gsub("[[\t\n\r\f\v]]", "", letter_list) #remove all tabs and enters
+  tolower(letter_list)
+  pap <- as.data.frame(table(letter_list))  #Make a data frame of all words in the list and its count.
+  colnames(pap) <- c("word", "freq")  #Change column names to make them more accurate  
+  arg <- order(pap$freq, decreasing = TRUE) #Order freq column by most to least abundant.
+  pap <- pap[arg, ]  #Order dataframe by the most to least abundant based on freq column
+  pap <- head(pap, n=top)  #take the number of rows from "top=?" input
+  x <- barplot(pap$freq, names = pap$word, col = "royalblue", space = 1, #Make a barplot of frequency
+               xaxt="n",xlab="", ylab = "Frequency", main = "Word Frequencies")
+  labels <- pap$word  #Create vector of names
+  text(x, x=x-.5, y=-3.5, labels = labels, srt = 45, pos = 1, xpd = TRUE) #Rotates labels so they look pretty.
 }
-surpriseMe(paper, "data")
+surpriseMe(paper, "mothur")
 
 
 
