@@ -1,14 +1,19 @@
-readPaper function: given a file name, create a list variable that contains 
-any necessary information
-
-given a file name, create a list variable that contains 
-any necessary information
-PSEUDOCODE: iterate over "file name" (text file), find "sequences",
-return in a list the information flanking this word
-seqfind<-function(){
+rm(list=ls())
+scan(file="mothur.txt",what="",sep=".")
+#readPaper function: given a file name, create a list variable that contains 
+#any necessary information
+#PSEUDOCODE: produce text file in list format
+readPaper<-function(text){
   info<-
-    return(info)
+    return(list(info))
 }
+
+2. if I supply the output from readPaper and a word (or a vector of words), 
+tell me how many times the word(s) shows up
+PSEUDOCODE: scan through output of readPaper, find word, for every instance 
+of the word add 1 to vector, return number of words
+function(x,identifier=default){
+  body
 
 apply(relabund,1,wilcox)
 
