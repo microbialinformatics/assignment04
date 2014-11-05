@@ -1,6 +1,5 @@
 rm(list=ls())
 In addition, the R file should contain a commented block of text at the top of each function telling anyone how to run each commands. Also, the code should be well commented so that it is clear what each step does. I will test your code by running the following commands:
-setwd("/Users/marschmi/assignment04")  
   source("marschmi.R")
 paper <- readPaper("mothur.txt")    #I may use a different file
 wordCount(paper, "mothur")          #I may use a different word
@@ -9,8 +8,11 @@ wordHist(paper)
 wordHist(paper, top=20)
 nextWord(paper, "mothur")           #I may use a different word
 previousWord(paper, "mothur")       #I may use a different word
-surpriseMe(paper, ...)
+surpriseMe(paper)
 
+
+
+#Below this line are my written functions
 ###########################################################################
 
 readPaper <- function(file){
@@ -92,24 +94,23 @@ previousWord(paper, "mothur")
 #########################
 
 
-surpriseMe <- function(filelist, word){
-  letter_list <- toString(filelist)
+surpriseMe <- function(filelist){
+  letter_list <- toString(filelist) #Converts the list of words into a list of letters.
   letter_list <- gsub("[[:punct:]]", "", letter_list) #remove all of the punctuation.
   letter_list <- gsub("[[:space:]]", "", letter_list) #remove all spaces.
   letter_list <- gsub("[[:digit:]]", "", letter_list) #remove numerics.
   letter_list <- tolower(letter_list) #Just to make sure all letters are lowercase.
-  oop <- strsplit(letter_list, split = "")
-  toop <- as.data.frame(table(oop))
+  oop <- strsplit(letter_list, split = "") #make each letter it's own unit.
+  toop <- as.data.frame(table(oop)) #count each letter and make it a data frame.
   x <- barplot(toop$Freq, names.arg = toop$oop, col = "violetred", xaxt="n",
-               xlab="Letter", ylab = "Frequency", main = "Letter Frequencies in filelist")
+               xlab="Letter", ylab = "Frequency", main = "Letter Frequencies in filelist") #Plot the data with frequency on y axis and letter on x axis
   labels <- toop$oop  #Create vector of names
-  text(x, x=x, y=-3.5, labels = labels, srt = 0, pos = 1, xpd = TRUE) #labels closer to axis.
+  text(x, x=x, y=-3.5, labels = labels, srt = 0, pos = 1, xpd = TRUE) #letter labels closer to x-axis.
 }
 surpriseMe(paper)
 #########################
-
-
 ###########################################################################
+#END
 
 
 
