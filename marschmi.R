@@ -1,7 +1,7 @@
 rm(list=ls())
 In addition, the R file should contain a commented block of text at the top of each function telling anyone how to run each commands. Also, the code should be well commented so that it is clear what each step does. I will test your code by running the following commands:
 setwd("/Users/marschmi/assignment04")  
-  source("XXXXXXXX.R")
+  source("marschmi.R")
 paper <- readPaper("mothur.txt")    #I may use a different file
 wordCount(paper, "mothur")          #I may use a different word
 wordPlacement(paper, "mothur")      #I may use a different word
@@ -92,28 +92,24 @@ previousWord(paper, "mothur")
 #########################
 
 
-###########################################################################
-
-
 surpriseMe <- function(filelist, word){
-  word_list <- unlist(scan("mothur.txt", what = "character", sep = ""))# Read in the text file.
-  letter_list <- readChar("mothur.txt", file.info("mothur.txt")$size) #http://stackoverflow.com/questions/9068397/import-text-file-as-single-character-string
-  letter_list <- gsub("[[:punct:]]", "", letter_list) #remove all of the punctuation
-  letter_list <- gsub("[[:space:]]", "", letter_list) #remove all spaces
-  letter_list <- gsub("[[\t\n\r\f\v]]", "", letter_list) #remove all tabs and enters
-  tolower(letter_list)
-  pap <- as.data.frame(table(letter_list))  #Make a data frame of all words in the list and its count.
-  colnames(pap) <- c("word", "freq")  #Change column names to make them more accurate  
-  arg <- order(pap$freq, decreasing = TRUE) #Order freq column by most to least abundant.
-  pap <- pap[arg, ]  #Order dataframe by the most to least abundant based on freq column
-  pap <- head(pap, n=top)  #take the number of rows from "top=?" input
-  x <- barplot(pap$freq, names = pap$word, col = "royalblue", space = 1, #Make a barplot of frequency
-               xaxt="n",xlab="", ylab = "Frequency", main = "Word Frequencies")
-  labels <- pap$word  #Create vector of names
-  text(x, x=x-.5, y=-3.5, labels = labels, srt = 45, pos = 1, xpd = TRUE) #Rotates labels so they look pretty.
+  letter_list <- toString(filelist)
+  letter_list <- gsub("[[:punct:]]", "", letter_list) #remove all of the punctuation.
+  letter_list <- gsub("[[:space:]]", "", letter_list) #remove all spaces.
+  letter_list <- gsub("[[:digit:]]", "", letter_list) #remove numerics.
+  letter_list <- tolower(letter_list) #Just to make sure all letters are lowercase.
+  oop <- strsplit(letter_list, split = "")
+  toop <- as.data.frame(table(oop))
+  x <- barplot(toop$Freq, names.arg = toop$oop, col = "violetred", xaxt="n",
+               xlab="Letter", ylab = "Frequency", main = "Letter Frequencies in filelist")
+  labels <- toop$oop  #Create vector of names
+  text(x, x=x, y=-3.5, labels = labels, srt = 0, pos = 1, xpd = TRUE) #labels closer to axis.
 }
-surpriseMe(paper, "mothur")
+surpriseMe(paper)
+#########################
 
+
+###########################################################################
 
 
 
