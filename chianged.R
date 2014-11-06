@@ -28,18 +28,21 @@ readPaper <- function(file){
 #wordCount command
 wordCount <- function(filelist, word){
   vector <- unlist(filelist)   #Convert filelist to string
-  TF <- vector == word
-  total <- sum(TF)
+  TF <- vector == word         #Creates TRUE/FALSE string
+  total <- sum(TF)             #Sum TRUEs
   return(total)
 }
 
 
 #wordPlacement command
 wordPlacement <- function(filelist, word){
-  vector <- as.vector(filelist)   #Convert filelist to vector
+  vector <- unlist(filelist)   #Convert filelist to string
   nword <- which(word==vector)    #Where the word is found
   return(nword)
 }
+
+##which function found with Help in R
+
 
 
 #wordHist command
