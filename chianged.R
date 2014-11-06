@@ -22,21 +22,15 @@ print(count)
 readPaper <- function(file){
   text <- scan(file,"")    #Reads txt file to create a string of characters
   text.list<- list(text)   #Creates a list of the previous string of characters
-  for(i in length(text)){
-    
-  }
-  squares
   return(text.list)
 }
 
 #wordCount command
 wordCount <- function(filelist, word){
-  file.vector <- as.vector(filelist)   #Convert filelist to vector
-  count = 0
-  for(i in 1:length(file.vector)){
-    ifelse (file.vector[i] == "word", count <- count + 1, count)
-  }
-  print(count)
+  vector <- unlist(filelist)   #Convert filelist to string
+  TF <- vector == word
+  total <- sum(TF)
+  return(total)
 }
 
 
