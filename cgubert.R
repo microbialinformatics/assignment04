@@ -1,20 +1,21 @@
 rm(list=ls())
-scan(file="mothur.txt",sep="\n")
 #readPaper function: given a file name, create a list variable that contains 
 #any necessary information
 #PSEUDOCODE: produce text file in list format
 readPaper<-function(text){
-  text.list<-scan(file="text",what="list",sep="\n")
-    return(text.list)
+  text.list<-scan(file=text,what="list",sep="\n")
+    return(list(text.list))
 }
 
 #2. if I supply the output from readPaper and a word (or a vector of words), 
 #tell me how many times the word(s) shows up
 #PSEUDOCODE: scan through output of readPaper, find word, for every instance 
 #of the word add 1 to vector, return number of words
-wordcount<-function(info,identifier=default){
-  body
-
+#hint: use TRUE/FALSE logicals in R
+wordCount<-function(paper,word){
+  
+}
+  
 apply(relabund,1,wilcox)
 
 wilcox<-function(x){
