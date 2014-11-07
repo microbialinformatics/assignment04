@@ -12,8 +12,12 @@ readPaper<-function(text){
 #PSEUDOCODE: scan through output of readPaper, find word, for every instance 
 #of the word add 1 to vector, return number of words
 #hint: use TRUE/FALSE logicals in R
-wordCount<-function(paper,word){
-  
+wordCount<-function(paper,mothur){
+  paper<-unlist(paper)
+  logic<-paper=="mothur"
+  as.numeric(logic)
+  count<-sum(logic)
+  return(count)
 }
   
 apply(relabund,1,wilcox)
