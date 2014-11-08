@@ -13,13 +13,23 @@ readPaper<-function(text){
 #of the word add 1 to vector, return number of words
 #hint: use TRUE/FALSE logicals in R
 wordCount<-function(paper,mothur){
-  paper<-unlist(paper)
-  logic<-paper=="mothur"
+  charpaper<-unlist(paper)
+  logic<-charpaper=="mothur"
   as.numeric(logic)
   count<-sum(logic)
   return(count)
 }
+
+#3. if I supply the output from readPaper and a word, 
+#tell me the starting character position of that word 
+#indexed from the beginning of the paper.
+wordPlacement<-function(paper,mothur){
   
+  
+  
+}
+
+
 apply(relabund,1,wilcox)
 
 wilcox<-function(x){
