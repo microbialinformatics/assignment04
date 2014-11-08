@@ -28,6 +28,13 @@ wordPlacement<-function(filelist=paper,word="mothur"){
   return(placement)
 }
 
+#4. Generate a histogram of how many times the top 10 words are used, 
+#but allow me to change the default number of "top words"
+wordHist<-function(filelist=paper,nwords=10){
+  alpha<-sort(paper)
+  
+  return()
+}
 
 apply(relabund,1,wilcox)
 
