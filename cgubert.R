@@ -2,9 +2,9 @@ rm(list=ls())
 #readPaper function: given a file name, create a list variable that contains 
 #any necessary information
 #PSEUDOCODE: produce text file in list format
-readPaper<-function(text){
-  text.list<-scan(file=text,what="list",sep="\n")
-    return(list(text.list))
+readPaper<-function(text="mothur.txt"){
+  paper<-scan(file=text,what="list",sep=" ")
+    return(paper)
 }
 
 #2. if I supply the output from readPaper and a word (or a vector of words), 
@@ -12,21 +12,20 @@ readPaper<-function(text){
 #PSEUDOCODE: scan through output of readPaper, find word, for every instance 
 #of the word add 1 to vector, return number of words
 #hint: use TRUE/FALSE logicals in R
-wordCount<-function(filelist,mothur){
+wordCount<-function(filelist=paper,word="mothur"){
   charpaper<-unlist(filelist)
-  logic<-charpaper=="mothur"
+  logic<-charpaper==word
   as.numeric(logic)
   count<-sum(logic)
   return(count)
-}
+ }
 
 #3. if I supply the output from readPaper and a word, 
 #tell me the starting character position of that word 
 #indexed from the beginning of the paper.
-wordPlacement<-function(filelist,mothur){
-  
-  which(paper=="mothur")
-  
+wordPlacement<-function(filelist=paper,word="mothur"){
+  placement<-which(paper=="mothur")
+  return(placement)
 }
 
 
