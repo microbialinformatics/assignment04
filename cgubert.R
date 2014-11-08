@@ -12,8 +12,8 @@ readPaper<-function(text){
 #PSEUDOCODE: scan through output of readPaper, find word, for every instance 
 #of the word add 1 to vector, return number of words
 #hint: use TRUE/FALSE logicals in R
-wordCount<-function(paper,mothur){
-  charpaper<-unlist(paper)
+wordCount<-function(filelist,mothur){
+  charpaper<-unlist(filelist)
   logic<-charpaper=="mothur"
   as.numeric(logic)
   count<-sum(logic)
@@ -23,9 +23,9 @@ wordCount<-function(paper,mothur){
 #3. if I supply the output from readPaper and a word, 
 #tell me the starting character position of that word 
 #indexed from the beginning of the paper.
-wordPlacement<-function(paper,mothur){
+wordPlacement<-function(filelist,mothur){
   
-  
+  which(paper=="mothur")
   
 }
 
