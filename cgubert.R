@@ -46,9 +46,13 @@ wordHist<-function(filelist=paper,nwords=10){
   filelist<-tolower(filelist)
   #create a table of paper, giving frequencies of words used
   papertab<-table(paper)
-  sortpapertab<-sort(papertab,)
-  
-  return()
+  #sort table so popular words are listed last
+  sortpapertab<-sort(papertab,increasing=TRUE)
+  #make vector of popular words
+  popwords<-tail(sortpapertab,n=nwords)
+  #plot words against frequency
+  popwordshist<-barplot(popwords,xlab="Top Words",ylab="Frequency",col="darkorchid4")
+  return(popwordshist)
 }
 
 apply(relabund,1,wilcox)
