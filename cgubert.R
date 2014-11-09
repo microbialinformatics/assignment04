@@ -13,10 +13,17 @@ readPaper<-function(text="mothur.txt"){
 #of the word add 1 to vector, return number of words
 #hint: use TRUE/FALSE logicals in R
 wordCount<-function(filelist=paper,word="mothur"){
+  #conver file to all lowercase
+  filelist<-tolower(filelist)
+  #make it not a list
   charpaper<-unlist(filelist)
+  #presence of word indicated with TRUE
   logic<-charpaper==word
+  #TRUE=1, FALSE=0
   as.numeric(logic)
+  #sum the TRUEs
   count<-sum(logic)
+  #return the total number of words found
   return(count)
  }
 
@@ -24,14 +31,22 @@ wordCount<-function(filelist=paper,word="mothur"){
 #tell me the starting character position of that word 
 #indexed from the beginning of the paper.
 wordPlacement<-function(filelist=paper,word="mothur"){
+  #convert file to all lowercase
+  filelist<-tolower(filelist)
+  #create a vector or seats where the word is
   placement<-which(paper=="mothur")
+  #return the vector
   return(placement)
 }
 
 #4. Generate a histogram of how many times the top 10 words are used, 
 #but allow me to change the default number of "top words"
 wordHist<-function(filelist=paper,nwords=10){
-  alpha<-sort(paper)
+  #convert file to all lowercase
+  filelist<-tolower(filelist)
+  #create a table of paper, giving frequencies of words used
+  papertab<-table(paper)
+  sortpapertab<-sort(papertab,)
   
   return()
 }
