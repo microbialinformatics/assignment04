@@ -76,8 +76,15 @@ nextWord<-function(filelist=paper,word="mothur"){
 
 #6. if I give a word, tell me the frequency of words that preceed it
 previousWord<-function(filelist=paper,word="mothur"){
-  
-  return()
+  #basically do the same thing as nextWords except...
+  filelist<-tolower(filelist)
+  placement<-which(filelist==word)
+  #create vector the the next seat BEFORE the word
+  prev<-(placement-1)
+  prevwords<-(paper[prev])
+  prevtab<-table(prevwords)
+  prevtabsort<-sort(prevtab)
+  return(prevtabsort)
 }
 
 #7. create a function "surpriseMe" that does a task of your choosing
