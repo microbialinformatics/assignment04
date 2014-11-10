@@ -63,7 +63,7 @@ nextWord<-function(filelist=paper,word="mothur"){
   #convert file to all lowercase
   filelist<-tolower(filelist)
   #find the location of the given word
-  placement<-which(paper=="mothur")
+  placement<-which(filelist==word)
   #create vector the the next seat after the word
   nxt<-(placement+1)
   #give words from paper in seats identified in vector "nxt"
