@@ -62,9 +62,26 @@ wordHist<-function(filelist=paper,top=10){
 nextWord<-function(filelist=paper,word="mothur"){
   #convert file to all lowercase
   filelist<-tolower(filelist)
-  #paste "mothur" text into one string
-  complete<-paste(paper,sep="",collapse=" ")
-  #separate string based on given word
-  splits<-strsplit(complete,"mothur")
+  #find the location of the given word
+  placement<-which(paper=="mothur")
+  #create vector the the next seat after the word
+  nxt<-(placement+1)
+  #give words from paper in seats identified in vector "nxt"
+  nxtwords<-(paper[nxt])
+  #tabulate the words and sort in increasing order of frequency
+  nxttab<-table(nxtwords)
+  nxttabsort<-sort(nxttab)
+  return(nxttabsort)
+}
+
+#6. if I give a word, tell me the frequency of words that preceed it
+previousWord<-function(filelist=paper,word="mothur"){
+  
+  return()
+}
+
+#7. create a function "surpriseMe" that does a task of your choosing
+surpirseMe<-function(filelist=paper){
+  
   return()
 }
