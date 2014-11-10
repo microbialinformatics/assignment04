@@ -88,7 +88,11 @@ previousWord<-function(filelist=paper,word="mothur"){
 }
 
 #7. create a function "surpriseMe" that does a task of your choosing
-surpirseMe<-function(filelist=paper){
-  
-  return()
+#give the function a file and a word and it will split the text up into
+#strings of text between that word. 
+surpriseMe<-function(filelist=paper,word="mothur"){
+  filelist<-tolower(filelist)
+  complete<-paste(paper,sep=" ",collapse=" ")
+  splitfile<-strsplit(complete,split=word)
+  return(splitfile)
 }
