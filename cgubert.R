@@ -41,7 +41,7 @@ wordPlacement<-function(filelist=paper,word="mothur"){
 
 #4. Generate a histogram of how many times the top 10 words are used, 
 #but allow me to change the default number of "top words"
-wordHist<-function(filelist=paper,nwords=10){
+wordHist<-function(filelist=paper,top=10){
   #convert file to all lowercase
   filelist<-tolower(filelist)
   #create a table of paper, giving frequencies of words used
@@ -49,25 +49,22 @@ wordHist<-function(filelist=paper,nwords=10){
   #sort table so popular words are listed last
   sortpapertab<-sort(papertab,increasing=TRUE)
   #make vector of popular words
-  popwords<-tail(sortpapertab,n=nwords)
+  popwords<-tail(sortpapertab,n=top)
   #plot words against frequency
   popwordshist<-barplot(popwords,xlab="Top Words",ylab="Frequency",col="darkorchid4")
   return(popwordshist)
 }
 
-apply(relabund,1,wilcox)
-
-wilcox<-function(x){
-  wilcox.test<-0
-  for(i in x)
-  wilcox.test<-wilcox.test+i
-  return(p.value)   
+#5. if I give a word, tell me the frequency of words that follow it
+#PSEUDOCODE: split up text file into segments divied after a given word, 
+#make a table of each resulting segment that shows frequencies of words in 
+#each segment/string
+nextWord<-function(filelist=paper,word="mothur"){
+  #convert file to all lowercase
+  filelist<-tolower(filelist)
+  #paste "mothur" text into one string
+  complete<-paste(paper,sep="",collapse=" ")
+  #separate string based on given word
+  splits<-strsplit(complete,"mothur")
+  return()
 }
-
-test <- function(x, design){
-  p <- wilcox.test(x~design)$p.value
-  return(p)
-}
-
-p.values <- apply(relabund, 1, test, design=treatments)
-padj.values <- p.adjust(p.values)
