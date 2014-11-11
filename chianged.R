@@ -1,7 +1,8 @@
 rm(list=ls())
 
 
-#readPaper command
+# readPaper command
+# Input: a text file you wish to read
 readPaper <- function(file){
   text <- scan(file,"")               # Reads txt file to create a string of characters
   lower.text <- tolower(text)         # Makes everything lowercase
@@ -9,11 +10,12 @@ readPaper <- function(file){
   return(text.list)
 }
 
-#References:
+# References:
 # tolower command found at "http://stackoverflow.com/questions/13640188/converting-text-to-lowercase"
 
 
-#wordCount command
+# wordCount command
+# Input: Output from readPaper function, word or vector of words of interest
 wordCount <- function(filelist, word){
   vector <- unlist(filelist)   # Convert filelist to vector
   TF <- vector == word         # Creates TRUE/FALSE vector
@@ -22,7 +24,8 @@ wordCount <- function(filelist, word){
 }
 
 
-#wordPlacement command
+# wordPlacement command
+# Input: Output from readPaper function, word of interest
 wordPlacement <- function(filelist, word){
   vector <- unlist(filelist)      # Convert filelist to string
   nword <- which(word==vector)    # Where the word is found
@@ -34,7 +37,8 @@ wordPlacement <- function(filelist, word){
 
 
 
-#wordHist command
+# wordHist command
+# Input: Output from readPaper function, # of top words you want
 wordHist <- function(filelist, nwords=10){
  file.table <- table(filelist)                      # Calculate frequency of each unique word in text
  sort.table <- sort(file.table, decreasing=T)       # Sort from highest to lowest
@@ -47,7 +51,9 @@ wordHist <- function(filelist, nwords=10){
 
 
 
-#nextWord command
+# nextWord command
+# Input: Output from readPaper function, word of interest
+# This command tells you the frequency of words that follow the first incidence of your word of interest
 nextWord <- function(filelist, word){
   vector <- unlist(filelist)                 # Converts filelist to vector
   word.pos <- which(word==vector)            # Creates vector of word positions
@@ -61,7 +67,9 @@ nextWord <- function(filelist, word){
 
 
 
-#previousWord command
+# previousWord command
+# Input: Output from readPaper function, word of interest
+# This command tells you the frequency of words that precede the first incidence of your word of interest
 previousWord <- function(filelist,word){
   vector <- unlist(filelist)                 # Converts filelist to vector
   word.pos <- which(word==vector)            # Creates vector of word positions
@@ -74,7 +82,8 @@ previousWord <- function(filelist,word){
 
 
 
-#surpriseMe command
+# surpriseMe command
+# Input: Output from readPaper function
 surpriseMe <- function(filelist){
   print("Are the authors of this article more eloquent* than Shakespeare?")
   print("(*measured by vocabulary size)")
