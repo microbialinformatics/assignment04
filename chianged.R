@@ -18,6 +18,22 @@ while(i <= length(s)){
 print(count)
 
 
+nameswitch <- function(names){
+  split.names <- strsplit(names," ")
+  split.names <- unlist(split.names)
+  new.names <- paste(split.names[2],split.names[1],sep=", ")
+  return(new.names)
+  vapply(names,)
+}
+
+convert.names <- sapply(names,nameswitch)
+sortednames <- sort(convert.names)
+
+
+
+
+
+
 #readPaper command
 readPaper <- function(file){
   text <- scan(file,"")    #Reads txt file to create a string of characters
@@ -41,16 +57,19 @@ wordPlacement <- function(filelist, word){
   return(nword)
 }
 
-##which function found with Help in R
+##which function found with Help by searching ??indice
 
 
 
 #wordHist command
 wordHist <- function(filelist, nwords=10){
-  squared <- x^2
-  sum.sq <- sum(squared)
-  return(sum.sq)
+ file.table <- table(filelist)                      ##Calculate frequency of each unique word in text
+ sort.table <- sort(file.table, decreasing=T)    ##Sort from highest to lowest
+ barplot(sort.table[1:nwords], width=1, space=0, names.arg=rownames(sort.table[1:nwords]), main = "Top Words", xlab="Word",ylab="Frequency", )
+ axis(1, labels=F, lwd.ticks=0)                     ##Add x-axis w/o ticks
 }
+
+##table function found with Help by searching ??frequency
 
 
 
