@@ -1,39 +1,6 @@
 rm(list=ls())
 
 
-s = c("A","T","C","C","G")
-count = 0
-for(i in 1:length(s)){
-  ifelse (s[i] == "C", count <- count + 1, count)
-}
-print(count)
-
-s = c("A","T","C","C","G")
-count = 0
-i = 1
-while(i <= length(s)){
-  ifelse (s[i] == "C", count <- count + 1, count)
-  i <- i+1
-}
-print(count)
-
-
-nameswitch <- function(names){
-  split.names <- strsplit(names," ")
-  split.names <- unlist(split.names)
-  new.names <- paste(split.names[2],split.names[1],sep=", ")
-  return(new.names)
-  vapply(names,)
-}
-
-convert.names <- sapply(names,nameswitch)
-sortednames <- sort(convert.names)
-
-
-
-
-
-
 #readPaper command
 readPaper <- function(file){
   text <- scan(file,"")    #Reads txt file to create a string of characters
@@ -57,7 +24,8 @@ wordPlacement <- function(filelist, word){
   return(nword)
 }
 
-##which function found with Help by searching ??indice
+### References: 
+## which function found with Help by searching ??indice
 
 
 
@@ -69,7 +37,8 @@ wordHist <- function(filelist, nwords=10){
  axis(1, labels=F, lwd.ticks=0)                     ##Add x-axis w/o ticks
 }
 
-##table function found with Help by searching ??frequency
+### References:
+## table function found with Help by searching ??frequency
 
 
 
@@ -119,3 +88,7 @@ surpriseMe <- function(filelist){
   print("Conclusion:")
   return(conclusion)
 }
+
+## References:
+### Shakespeare vocabulary data from "http://experiments.undercurrent.com/"
+### Shakespeare translation from "http://lingojam.com/EnglishtoShakespearean"
