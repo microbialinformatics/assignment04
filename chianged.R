@@ -1,6 +1,8 @@
 rm(list=ls())
 
 
+
+
 # readPaper command
 # Input: a text file you wish to read
 readPaper <- function(file){
@@ -14,6 +16,8 @@ readPaper <- function(file){
 # tolower command found at "http://stackoverflow.com/questions/13640188/converting-text-to-lowercase"
 
 
+
+
 # wordCount command
 # Input: Output from readPaper function, word or vector of words of interest
 wordCount <- function(filelist, word){
@@ -22,6 +26,8 @@ wordCount <- function(filelist, word){
   total <- sum(TF)             # Sum TRUEs
   return(total)
 }
+
+
 
 
 # wordPlacement command
@@ -37,6 +43,7 @@ wordPlacement <- function(filelist, word){
 
 
 
+
 # wordHist command
 # Input: Output from readPaper function, # of top words you want
 wordHist <- function(filelist, nwords=10){
@@ -48,6 +55,7 @@ wordHist <- function(filelist, nwords=10){
 
 # References:
 # table function found with Help by searching ??frequency
+
 
 
 
@@ -67,6 +75,7 @@ nextWord <- function(filelist, word){
 
 
 
+
 # previousWord command
 # Input: Output from readPaper function, word of interest
 # This command tells you the frequency of words that precede the first incidence of your word of interest
@@ -79,6 +88,7 @@ previousWord <- function(filelist,word){
   matrix <- as.matrix(table)                 # Save frequencies as matrix
   return(matrix)
 }
+
 
 
 
