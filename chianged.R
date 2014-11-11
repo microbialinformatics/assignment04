@@ -89,9 +89,13 @@ nextWord <- function(filelist, word){
 
 #previousWord command
 previousWord <- function(filelist,word){
-  squared <- x^2
-  sum.sq <- sum(squared)
-  return(sum.sq)
+  vector <- unlist(filelist)                 ## Converts filelist to vector
+  word.pos <- which(word==vector)            ## Creates vector of word positions
+  position <- word.pos[1]                    ## Take the first word location
+  precede.words <- vector[1:position]        ## Creates vector from beginning of filelist vector to first occurance of word
+  table <- table(precede.words)              ## Calculate frequency of each word preceding target word
+  matrix <- as.matrix(table)                 ## Save frequencies as matrix
+  return(matrix)
 }
 
 
