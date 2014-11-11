@@ -43,8 +43,8 @@ readPaper <- function(file){
 
 #wordCount command
 wordCount <- function(filelist, word){
-  vector <- unlist(filelist)   #Convert filelist to string
-  TF <- vector == word         #Creates TRUE/FALSE string
+  vector <- unlist(filelist)   #Convert filelist to vector
+  TF <- vector == word         #Creates TRUE/FALSE vector
   total <- sum(TF)             #Sum TRUEs
   return(total)
 }
@@ -64,7 +64,7 @@ wordPlacement <- function(filelist, word){
 #wordHist command
 wordHist <- function(filelist, nwords=10){
  file.table <- table(filelist)                      ##Calculate frequency of each unique word in text
- sort.table <- sort(file.table, decreasing=T)    ##Sort from highest to lowest
+ sort.table <- sort(file.table, decreasing=T)       ##Sort from highest to lowest
  barplot(sort.table[1:nwords], width=1, space=0, names.arg=rownames(sort.table[1:nwords]), main = "Top Words", xlab="Word",ylab="Frequency", )
  axis(1, labels=F, lwd.ticks=0)                     ##Add x-axis w/o ticks
 }
@@ -75,9 +75,14 @@ wordHist <- function(filelist, nwords=10){
 
 #nextWord command
 nextWord <- function(filelist, word){
-  squared <- x^2
-  sum.sq <- sum(squared)
-  return(sum.sq)
+  vector <- unlist(filelist)                 ## Converts filelist to vector
+  word.pos <- which(word==vector)            ## Creates vector of word positions
+  position <- word.pos[1]                    ## Take the first word location
+  leng <- length(vector)                     ## Define length of filelist
+  follow.words <- vector[position:leng]      ## Creates vector from first occurance of word to end of filelist vector
+  table <- table(follow.words)               ## Calculate frequency of each word after target word
+  matrix <- as.matrix(table)                 ## Save frequencies as matrix
+  return(matrix)
 }
 
 
