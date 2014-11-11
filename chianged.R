@@ -101,8 +101,21 @@ previousWord <- function(filelist,word){
 
 
 #surpriseMe command
-surpriseMe <- function(x){
-  squared <- x^2
-  sum.sq <- sum(squared)
-  return(sum.sq)
+##How eloquent is this article compared to Shakespeare?
+surpriseMe <- function(filelist){
+  print("Are the authors of this article more eloquent* than Shakespeare?")
+  print("(*measured by vocabulary size)")
+  Shake.prop <- 5170/35000           ## Shakespeare unique words / total words
+  vector <- unlist(filelist)         ##
+  table <- table(vector)             ##
+  unique <- nrow(table)              ## Calculate total # of unique words
+  total <- length(vector)            ## Calculate total length of filelist
+  Shake.adj <- Shake.prop * total    ## Subsample Shakespeare to reflect article length
+  matrix <- matrix(c(unique, Shake.adj), nrow=2, ncol=1)
+  colnames(matrix) <- "Unique words"
+  rownames(matrix) <- c("Article","Shakespeare")
+  print(matrix)
+  conclusion <- ifelse (unique > Shake.adj, "Shakespeare ain't got nothin' on dem scientists", "The intellectuals doeth not compareth with the eloquence of Shakespeare")
+  print("Conclusion:")
+  return(conclusion)
 }
