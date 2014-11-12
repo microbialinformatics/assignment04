@@ -5,6 +5,7 @@ rm(list=ls())
 
 # readPaper command
 # Input: a text file you wish to read
+# Output: list of all words in file
 readPaper <- function(file){
   text <- scan(file,"")               # Reads txt file to create a string of characters
   lower.text <- tolower(text)         # Makes everything lowercase
@@ -20,6 +21,7 @@ readPaper <- function(file){
 
 # wordCount command
 # Input: Output from readPaper function, word or vector of words of interest
+# Output: Vector of number(s) that indicate how many times the word(s) appear
 wordCount <- function(filelist, word){
   vector <- unlist(filelist)   # Convert filelist to vector
   TF <- vector == word         # Creates TRUE/FALSE vector
@@ -32,6 +34,7 @@ wordCount <- function(filelist, word){
 
 # wordPlacement command
 # Input: Output from readPaper function, word of interest
+# Output: Vector of #'s which correspond to the location(s) of the word indexed from the beginning
 wordPlacement <- function(filelist, word){
   vector <- unlist(filelist)      # Convert filelist to string
   nword <- which(word==vector)    # Where the word is found
@@ -46,10 +49,11 @@ wordPlacement <- function(filelist, word){
 
 # wordHist command
 # Input: Output from readPaper function, # of top words you want
-wordHist <- function(filelist, nwords=10){
+# Output: 
+wordHist <- function(filelist, top=10){
  file.table <- table(filelist)                      # Calculate frequency of each unique word in text
  sort.table <- sort(file.table, decreasing=T)       # Sort from highest to lowest
- barplot(sort.table[1:nwords], width=1, space=0, names.arg=rownames(sort.table[1:nwords]), main = "Top Words", xlab="Word",ylab="Frequency", )
+ barplot(sort.table[1:top], width=1, space=0, names.arg=rownames(sort.table[1:top]), main = "Top Words", xlab="Word",ylab="Frequency")
  axis(1, labels=F, lwd.ticks=0)                     # Add x-axis w/o ticks
 }
 
@@ -61,6 +65,7 @@ wordHist <- function(filelist, nwords=10){
 
 # nextWord command
 # Input: Output from readPaper function, word of interest
+# Output: Vector of words & their frequency
 # This command tells you the frequency of words that follow the first incidence of your word of interest
 nextWord <- function(filelist, word){
   vector <- unlist(filelist)                 # Converts filelist to vector
@@ -69,15 +74,14 @@ nextWord <- function(filelist, word){
   leng <- length(vector)                     # Define length of filelist
   follow.words <- vector[position:leng]      # Creates vector from first occurance of word to end of filelist vector
   table <- table(follow.words)               # Calculate frequency of each word after target word
-  matrix <- as.matrix(table)                 # Save frequencies as matrix
-  return(matrix)
+  return(table)
 }
-
 
 
 
 # previousWord command
 # Input: Output from readPaper function, word of interest
+# Output: Vector of words & their frequency
 # This command tells you the frequency of words that precede the first incidence of your word of interest
 previousWord <- function(filelist,word){
   vector <- unlist(filelist)                 # Converts filelist to vector
@@ -85,8 +89,7 @@ previousWord <- function(filelist,word){
   position <- word.pos[1]                    # Take the first word location
   precede.words <- vector[1:position]        # Creates vector from beginning of filelist vector to first occurance of word
   table <- table(precede.words)              # Calculate frequency of each word preceding target word
-  matrix <- as.matrix(table)                 # Save frequencies as matrix
-  return(matrix)
+  return(table)
 }
 
 
